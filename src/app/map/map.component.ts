@@ -4,6 +4,7 @@ import { } from 'googlemaps';
 import { MapsAPILoader, AgmMap } from '@agm/core';
 import { DataService } from '../data.service'
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-map',
@@ -37,7 +38,8 @@ export class MapComponent implements OnInit {
   constructor(
     private dataService: DataService,
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -105,7 +107,10 @@ addPlace(placesForm: NgForm) {
   console.log(placesForm.value);
   this.dataService.addRecord("places", placesForm.value)
   .subscribe(
-    ratedPlace => this.successMessage = "Record added successfully",
+    ratedPlace => {
+      this.successMessage = "Record added successfully"
+      this.router.navigate(['/place/edit/', ratedPlace.id]);
+    },
     error =>  this.errorMessage = <any>error); 
    
     

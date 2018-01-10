@@ -37,7 +37,7 @@
         <form novalidate (ngSubmit)="addPlace(placesForm)" #placesForm="ngForm" class="form-horizontal">
             <input [ngModel]="place?.name" ngModel #name="ngModel" type="hidden" name="name" value="place.name">
             <input [ngModel]="place?.vicinity" ngModel #address="ngModel" type="hidden" name="address" value="place.vicinity">
-          </form>
+        </form>
       <td class="type">{{place.types[0]}}</td>
       <td>{{place.name}}</td>
       <td class="type">{{place.opening_hours.open_now}}</td>
@@ -46,7 +46,7 @@
       <td>{{place.vicinity}}</td>
       <td># of stars</td>
       <td class="text-center">    
-        <button (click)="addPlace(placesForm)" class="btn btn-danger">Rate</button>
+           <button (click)="addPlace(placesForm)" class="btn btn-danger">Rate</button>
       </td>
     
     </tr>

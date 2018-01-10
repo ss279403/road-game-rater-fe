@@ -1,8 +1,8 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-//import { ActivatedRoute, Params } from '@angular/router';
-// import { Location } from '@angular/common';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
 
 
 import { DataService } from '../data.service'
@@ -24,58 +24,72 @@ export class RateFormComponent implements OnInit {
   errorMessage: string; 
 
   ratedPlace: object;
+
+  places: any[];
+
+  placeId;
   
   
   constructor(
     private dataService: DataService,
-  //  private route: ActivatedRoute,
-    // private location: Location
+     private route: ActivatedRoute,
+     private location: Location
   ) {}
 
 
   ngOnInit() {
-  this.getUserLocation();
-    // this.route.params
-    // .subscribe((params: Params) => {
-    //   (+params['id']) ? this.getRecordForEdit() : null;
-    // });
+          this.dataService.getRecords("places")
+        .subscribe(
+          places => this.places = places,
+          error =>  this.errorMessage = <any>error);
+          console.log(this.places)
+    
+  // this.getUserLocation();
+    this.route.params
+   .subscribe((params: Params) => {
+      (+params['id']) ? this.getRecordForEdit() : null;
+      console.log(this.placeId)
+      this.placeId = params.id;
+      console.log(this.route.params);
+      console.log(this.placeId)
+    });
   }
 
-  private getUserLocation() {
-    if(navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        this.lat = position.coords.latitude;
-        this.lng = position.coords.longitude;
-      });
-    }
-  }
 
-  // getRecordForEdit(){
-  //   this.params
-  //     .switchMap((params: Params) => this.dataService.getRecord("ratingInfo", +params['id']))
-  //     .subscribe(ratedPlace => this.ratedPlace = ratedPlace);
+
+  // private getUserLocation() {
+  //   if(navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(position => {
+  //       this.lat = position.coords.latitude;
+  //       this.lng = position.coords.longitude;
+  //     });
+  //   }
   // }
+
+  getRecordForEdit(){
+    this.route.params
+      .switchMap((params: Params) => this.dataService.getRecord("places", +params['id']))
+      .subscribe(ratedPlace => this.ratedPlace = ratedPlace);
+      
+  }
 
   saveRating(ratedForm: NgForm){
     console.log(ratedForm.value);
+    console.log(this.route.params);
     // if(typeof ratedForm.value.id === "number"){
     //   this.dataService.editRecord("ratingInfo", ratedForm.value, ratedForm.value.id)
     //       .subscribe(
     //         ratedPlace => this.successMessage = "Record updated successfully",
     //         error =>  this.errorMessage = <any>error);
     // }else{
-      this.dataService.addRecord("places/7/ratinginfo", ratedForm.value)
+      this.dataService.addRecord("places/"+this.placeId+"/ratinginfo", ratedForm.value)
           .subscribe(
             ratedPlace => this.successMessage = "Record added successfully",
             error =>  this.errorMessage = <any>error); 
             this.ratedPlace = {};
             this.ratedForm.form.markAsPristine();
             this.dataService.addRecord("ratinginfo", ratedForm.value)
-          .subscribe(
-            ratedPlace => this.successMessage = "Record added successfully",
-            error =>  this.errorMessage = <any>error); 
-            this.ratedPlace = {};
-            this.ratedForm.form.markAsPristine();
+
           // }
 
   }

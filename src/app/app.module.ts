@@ -6,10 +6,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataService } from './data.service';
 import { AgmCoreModule } from '@agm/core';
-// import { RouterModule }   from '@angular/router';
+import { RouterModule }   from '@angular/router';
 //import { MatDialogModule } from '@angular/material';
 import { HttpModule } from '@angular/http';
-//import { AppRoutingModule } from './routing/routing.module';
+import { AppRoutingModule } from './routing/routing.module';
 import { MapComponent } from './map/map.component';
 import { RateFormComponent } from './rate-form/rate-form.component';
 //import { environment } from '../environments/environment';
@@ -21,7 +21,7 @@ import { RateFormComponent } from './rate-form/rate-form.component';
     RateFormComponent ],
   imports: [
     BrowserModule,
-  //  AppRoutingModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
     CommonModule,
     HttpModule,
