@@ -15,8 +15,8 @@ export class MapComponent implements OnInit {
 
   userSearch: String;
 
-  lat: number = 37.0902;
-  lng: number = -95.7129;
+  lat: number = 43.1979;
+  lng: number = -70.8737;
   zoom: number = 18;
   searchControl = new FormControl();
   nearByPlaces;
