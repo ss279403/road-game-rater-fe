@@ -2,6 +2,8 @@ import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core'
 import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
 import { MapsAPILoader, AgmMap } from '@agm/core';
+import { DataService } from '../data.service'
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-map',
@@ -18,14 +20,22 @@ export class MapComponent implements OnInit {
   searchControl = new FormControl();
   nearByPlaces;
 
+  placesForm: NgForm;
+  @ViewChild('placesForm')
+
+
   @ViewChild("search")
   searchElementRef: ElementRef;
 
   @ViewChild("myMap")
   mapElementRef: ElementRef;
 
+  successMessage: string;
+  errorMessage: string; 
+
 
   constructor(
+    private dataService: DataService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone
   ) { }
@@ -90,6 +100,15 @@ export class MapComponent implements OnInit {
        
      });
    }
+}
+addPlace(placesForm: NgForm) {
+  console.log(placesForm.value);
+  this.dataService.addRecord("places", placesForm.value)
+  .subscribe(
+    ratedPlace => this.successMessage = "Record added successfully",
+    error =>  this.errorMessage = <any>error); 
+   
+    
 }
 
 }

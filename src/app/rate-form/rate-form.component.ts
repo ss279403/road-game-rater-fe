@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 //import { ActivatedRoute, Params } from '@angular/router';
 // import { Location } from '@angular/common';
 
+
 import { DataService } from '../data.service'
 @Component({
   selector: 'app-rate-form',
@@ -50,7 +51,7 @@ export class RateFormComponent implements OnInit {
   }
 
   // getRecordForEdit(){
-  //   this.route.params
+  //   this.params
   //     .switchMap((params: Params) => this.dataService.getRecord("ratingInfo", +params['id']))
   //     .subscribe(ratedPlace => this.ratedPlace = ratedPlace);
   // }
@@ -63,7 +64,13 @@ export class RateFormComponent implements OnInit {
     //         ratedPlace => this.successMessage = "Record updated successfully",
     //         error =>  this.errorMessage = <any>error);
     // }else{
-      this.dataService.addRecord("ratinginfo", ratedForm.value)
+      this.dataService.addRecord("places/7/ratinginfo", ratedForm.value)
+          .subscribe(
+            ratedPlace => this.successMessage = "Record added successfully",
+            error =>  this.errorMessage = <any>error); 
+            this.ratedPlace = {};
+            this.ratedForm.form.markAsPristine();
+            this.dataService.addRecord("ratinginfo", ratedForm.value)
           .subscribe(
             ratedPlace => this.successMessage = "Record added successfully",
             error =>  this.errorMessage = <any>error); 
