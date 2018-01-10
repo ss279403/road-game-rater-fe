@@ -14,7 +14,7 @@ export class MapComponent implements OnInit {
 
   lat: number = 37.0902;
   lng: number = -95.7129;
-  zoom: number = 6;
+  zoom: number = 18;
   searchControl = new FormControl();
   nearByPlaces;
 
@@ -66,7 +66,7 @@ export class MapComponent implements OnInit {
                var request = {
                  location: new google.maps.LatLng(this.lat,this.lng),
                  rankBy: google.maps.places.RankBy.DISTANCE,
-                 types: ["restaurant"]
+                 types: ["restaurant", "gas_station", "grocery_or_supermarket"]
                };
      
                let places = new google.maps.places.PlacesService(this.mapElementRef.nativeElement);
@@ -87,6 +87,7 @@ export class MapComponent implements OnInit {
      navigator.geolocation.getCurrentPosition((position) => {
        this.lat = position.coords.latitude;
        this.lng = position.coords.longitude;
+       
      });
    }
 }
