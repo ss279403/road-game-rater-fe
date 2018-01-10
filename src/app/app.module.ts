@@ -11,12 +11,14 @@ import { AgmCoreModule } from '@agm/core';
 import { HttpModule } from '@angular/http';
 //import { AppRoutingModule } from './routing/routing.module';
 import { MapComponent } from './map/map.component';
+import { RateFormComponent } from './rate-form/rate-form.component';
 //import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent ],
+    MapComponent,
+    RateFormComponent ],
   imports: [
     BrowserModule,
   //  AppRoutingModule,
