@@ -3,18 +3,20 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
+import { fadeInAnimation } from '../animations/fade-in.animation';
 
 
 import { DataService } from '../data.service'
 @Component({
   selector: 'app-rate-form',
   templateUrl: './rate-form.component.html',
-  styleUrls: ['./rate-form.component.css']
+  styleUrls: ['./rate-form.component.css'],
+  animations: [fadeInAnimation]
 })
 export class RateFormComponent implements OnInit {
 
-  lat: number;
-  lng: number;
+  // lat: number;
+  // lng: number;
 
   ratedForm: NgForm;
   @ViewChild('ratedForm')
@@ -27,6 +29,8 @@ export class RateFormComponent implements OnInit {
 
   places: any[];
 
+  ratingInfo: any[];
+
   placeId;
   
   
@@ -38,33 +42,31 @@ export class RateFormComponent implements OnInit {
 
 
   ngOnInit() {
-          this.dataService.getRecords("places")
-        .subscribe(
-          places => this.places = places,
-          error =>  this.errorMessage = <any>error);
-          console.log(this.places)
-    
-  // this.getUserLocation();
+    // this.getPlaces();
+    this.getRating();
     this.route.params
    .subscribe((params: Params) => {
       (+params['id']) ? this.getRecordForEdit() : null;
-      console.log(this.placeId)
       this.placeId = params.id;
-      console.log(this.route.params);
-      console.log(this.placeId)
     });
   }
 
+  getPlaces(){
+  this.dataService.getRecords("places")
+  .subscribe(
+    places => this.places = places,
+    error =>  this.errorMessage = <any>error);
+    console.log(this.places)
+  }
 
+  getRating() {
+      this.dataService.getRecords("ratinginfo")
+      .subscribe(
+        ratingInfo => this.ratingInfo = ratingInfo,
+        error =>  this.errorMessage = <any>error);
+        console.log(this.ratingInfo)
+  }
 
-  // private getUserLocation() {
-  //   if(navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(position => {
-  //       this.lat = position.coords.latitude;
-  //       this.lng = position.coords.longitude;
-  //     });
-  //   }
-  // }
 
   getRecordForEdit(){
     this.route.params
@@ -74,24 +76,14 @@ export class RateFormComponent implements OnInit {
   }
 
   saveRating(ratedForm: NgForm){
-    console.log(ratedForm.value);
-    console.log(this.route.params);
-    // if(typeof ratedForm.value.id === "number"){
-    //   this.dataService.editRecord("ratingInfo", ratedForm.value, ratedForm.value.id)
-    //       .subscribe(
-    //         ratedPlace => this.successMessage = "Record updated successfully",
-    //         error =>  this.errorMessage = <any>error);
-    // }else{
       this.dataService.addRecord("places/"+this.placeId+"/ratinginfo", ratedForm.value)
           .subscribe(
             ratedPlace => this.successMessage = "Record added successfully",
-            error =>  this.errorMessage = <any>error); 
+            error =>  this.errorMessage = <any>error);
+          //  this.dataService.addRecord("ratinginfo", ratedForm.value);
             this.ratedPlace = {};
-            this.ratedForm.form.markAsPristine();
-            this.dataService.addRecord("ratinginfo", ratedForm.value)
-
-          // }
-
+            this.ratedForm.form.reset();
+            this.ngOnInit();
   }
 
   ngAfterViewChecked() {

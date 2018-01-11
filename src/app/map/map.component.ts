@@ -5,11 +5,13 @@ import { MapsAPILoader, AgmMap } from '@agm/core';
 import { DataService } from '../data.service'
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { fadeInAnimation } from '../animations/fade-in.animation';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  styleUrls: ['./map.component.css'],
+  animations: [fadeInAnimation]
 })
 export class MapComponent implements OnInit {
 
@@ -21,10 +23,12 @@ export class MapComponent implements OnInit {
   searchControl = new FormControl();
   nearByPlaces;
 
+  places: any[];
+
   placesForm: NgForm;
   @ViewChild('placesForm')
 
-
+ 
   @ViewChild("search")
   searchElementRef: ElementRef;
 
@@ -32,88 +36,97 @@ export class MapComponent implements OnInit {
   mapElementRef: ElementRef;
 
   successMessage: string;
-  errorMessage: string; 
+  errorMessage: string;
 
 
   constructor(
     private dataService: DataService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    private router: Router
-  ) { }
+    private router: Router,
+   ) { }
 
   ngOnInit() {
     this.setCurrentPosition();
     this.populateMap();
-  }
+    this.getPlaces();
+   }
 
-  private populateMap(){
-    
+  private populateMap() {
+
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
-     
-           let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-             types: ["geocode", "establishment"]
-           });
-     
-           autocomplete.addListener("place_changed", () => {
-             this.ngZone.run(() => {
 
-               //get the place result
-               let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["geocode", "establishment"]
+      });
 
-               console.log(place);
-     
-               //verify result
-               if (place.geometry === undefined || place.geometry === null) {
-                 return;
-               }
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
 
-               this.lat = place.geometry.location.lat();
-               this.lng = place.geometry.location.lng();
-     
-               //set latitude, longitude and zoom
-               
-     
-               var request = {
-                 location: new google.maps.LatLng(this.lat,this.lng),
-                 rankBy: google.maps.places.RankBy.DISTANCE,
-                 types: ["restaurant", "gas_station", "grocery_or_supermarket"]
-               };
-     
-               let places = new google.maps.places.PlacesService(this.mapElementRef.nativeElement);
-               places.nearbySearch(request, (results, status) => {
-                 if (status == google.maps.places.PlacesServiceStatus.OK) {
-                   this.nearByPlaces = results;
-                   console.log(this.nearByPlaces)
-                 }
-               })
-     
-             });
-           });
-         });
- }
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
- private setCurrentPosition() {
-   if ("geolocation" in navigator) {
-     navigator.geolocation.getCurrentPosition((position) => {
-       this.lat = position.coords.latitude;
-       this.lng = position.coords.longitude;
-       
-     });
-   }
-}
-addPlace(placesForm: NgForm) {
-  console.log(placesForm.value);
-  this.dataService.addRecord("places", placesForm.value)
-  .subscribe(
-    ratedPlace => {
-      this.successMessage = "Record added successfully"
-      this.router.navigate(['/place/edit/', ratedPlace.id]);
-    },
-    error =>  this.errorMessage = <any>error); 
-   
-    
-}
+          console.log(place);
+
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          this.lat = place.geometry.location.lat();
+          this.lng = place.geometry.location.lng();
+
+          //set latitude, longitude and zoom
+
+
+          var request = {
+            location: new google.maps.LatLng(this.lat, this.lng),
+            rankBy: google.maps.places.RankBy.DISTANCE,
+            types: ["restaurant", "gas_station", "grocery_or_supermarket"]
+          };
+
+          let places = new google.maps.places.PlacesService(this.mapElementRef.nativeElement);
+          places.nearbySearch(request, (results, status) => {
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+              this.nearByPlaces = results;
+              console.log(this.nearByPlaces)
+            }
+          })
+        });
+      });
+    });
+  }
+
+  private setCurrentPosition() {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.lat = position.coords.latitude;
+        this.lng = position.coords.longitude;
+
+      });
+    }
+  }
+
+  
+  addPlace(placesForm: NgForm) {
+    this.dataService.addRecord("places", placesForm.value)
+      .subscribe(
+      ratedPlace => {
+        this.successMessage = "Record added successfully",
+        this.router.navigate(['/place/add', ratedPlace.id]);
+      },
+      error => this.errorMessage = <any>error);
+  }
+
+
+  getPlaces(){
+    this.dataService.getRecords("places")
+     .subscribe(
+      places => this.places = places,
+      error =>  this.errorMessage = <any>error);
+      console.log(this.places);
+      
+  }
 
 }

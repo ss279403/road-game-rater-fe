@@ -12,13 +12,17 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './routing/routing.module';
 import { MapComponent } from './map/map.component';
 import { RateFormComponent } from './rate-form/rate-form.component';
+import { PlaceComponent } from './place/place.component';
+import { NavigationComponent } from './navigation/navigation.component';
 //import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
-    RateFormComponent ],
+    RateFormComponent,
+    PlaceComponent,
+    NavigationComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,

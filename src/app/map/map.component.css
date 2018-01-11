@@ -4,3 +4,7 @@ agm-map {
 
 .type:first-letter { text-transform: uppercase 
 }
+
+.form-horizontal { display: none
+
+}
