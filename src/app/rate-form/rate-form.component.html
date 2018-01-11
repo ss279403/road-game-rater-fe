@@ -4,11 +4,15 @@
    <div class="form-group">
      <label for="rating" class="col-sm-2 control-label">Rating 1-5</label>
      <div class="col-sm-10">
-         <input [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" name="rating" type="radio" id="rating" value="1" /><span></span>
-         <input [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" name="rating" type="radio" id="rating" value="2" /><span></span>
-         <input [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" name="rating" type="radio" id="rating" value="3" /><span></span>
-         <input [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" name="rating" type="radio" id="rating" value="4" /><span></span>
-         <input [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" name="rating" type="radio" id="rating" value="5" /><span></span>
+         <input [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" name="rating" type="radio" id="rating" value="1" /><span>★☆☆☆☆</span>
+         <br>
+         <input [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" name="rating" type="radio" id="rating" value="2" /><span>★★☆☆☆</span>
+         <br>
+         <input [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" name="rating" type="radio" id="rating" value="3" /><span>★★★☆☆</span>
+         <br>
+         <input [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" name="rating" type="radio" id="rating" value="4" /><span>★★★★☆</span>
+         <br>
+         <input [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" name="rating" type="radio" id="rating" value="5" /><span>★★★★★</span>
        <span *ngIf="formErrors.rating" class="text-danger">
          {{ formErrors.rating }}
        </span>
