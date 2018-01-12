@@ -27,8 +27,8 @@
       <th>Place ID</th>
       <th>Rating</th>
       <th>Address</th>
-      <th>RoadGame Rate</th>
       <th>Rate This Place</th>
+      <th>RoadGame Rate</th>
     </tr>
   </thead>
   <tbody>
@@ -43,17 +43,17 @@
       <td>{{place.place_id}}</td>
       <td>{{place.rating}}</td>
       <td>{{place.vicinity}}</td>
-      <td> 
-        <div *ngFor="let placeclass of places">
-          {{placeclass.name}}
-        </div>
-      </td>
-      <td class="text-center">    
+        <td class="text-center">    
            <button (click)="addPlace(placesForm)" class="btn btn-danger">Rate</button>
       </td>
+      <td> 
+          <div *ngFor='let place of places'>
+            {{place.name}}
+          </div>
+      </td>
+
     </tr>
   </tbody>
 </table>
-
-    
+  
 </div>

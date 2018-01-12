@@ -23,67 +23,73 @@ export class RateFormComponent implements OnInit {
   currentForm: NgForm;
 
   successMessage: string;
-  errorMessage: string; 
+  errorMessage: string;
 
   ratedPlace: object;
 
-  places: any[];
+  places;
 
   ratingInfo: any[];
 
   placeId;
-  
-  
+
+
   constructor(
     private dataService: DataService,
-     private route: ActivatedRoute,
-     private location: Location
-  ) {}
+    private route: ActivatedRoute,
+    private location: Location
+  ) { }
 
 
   ngOnInit() {
-    // this.getPlaces();
-    this.getRating();
+    //   this.getPlaces();
+    this.getRatings();
     this.route.params
-   .subscribe((params: Params) => {
-      (+params['id']) ? this.getRecordForEdit() : null;
-      this.placeId = params.id;
-    });
+      .subscribe((params: Params) => {
+        (+params['id']) ? this.getRecordForEdit() : null;
+        this.placeId = params.id;
+      });
   }
 
-  getPlaces(){
-  this.dataService.getRecords("places")
-  .subscribe(
-    places => this.places = places,
-    error =>  this.errorMessage = <any>error);
+  getPlaces() {
+    this.dataService.getRecords("places")
+      .subscribe(
+      places => this.places = places,
+      error => this.errorMessage = <any>error);
     console.log(this.places)
   }
 
-  getRating() {
-      this.dataService.getRecords("ratinginfo")
-      .subscribe(
-        ratingInfo => this.ratingInfo = ratingInfo,
-        error =>  this.errorMessage = <any>error);
-        console.log(this.ratingInfo)
+  getRatings() {
+    this.dataService.getRecords("ratinginfo")
+      .subscribe(ratingInfo => {
+      this.ratingInfo = ratingInfo
+        //   this.getRecordForEdit();
+      },
+      error => this.errorMessage = <any>error);
+    console.log(this.ratingInfo)
   }
 
 
-  getRecordForEdit(){
+  getRecordForEdit() {
     this.route.params
       .switchMap((params: Params) => this.dataService.getRecord("places", +params['id']))
-      .subscribe(ratedPlace => this.ratedPlace = ratedPlace);
-      
+      .subscribe(ratedPlace => {
+      this.ratedPlace = ratedPlace
+      },
+      error => this.errorMessage = <any>error);
+
   }
 
-  saveRating(ratedForm: NgForm){
-      this.dataService.addRecord("places/"+this.placeId+"/ratinginfo", ratedForm.value)
-          .subscribe(
-            ratedPlace => this.successMessage = "Record added successfully",
-            error =>  this.errorMessage = <any>error);
-          //  this.dataService.addRecord("ratinginfo", ratedForm.value);
-            this.ratedPlace = {};
-            this.ratedForm.form.reset();
-            this.ngOnInit();
+
+  saveRating(ratedForm: NgForm) {
+    this.dataService.addRecord("places/" + this.placeId + "/ratinginfo", ratedForm.value)
+      .subscribe(
+      ratedPlace => this.successMessage = "Record added successfully",
+      error => this.errorMessage = <any>error);
+    //     this.dataService.addRecord("ratinginfo", ratedForm.value);
+    this.ratedPlace = {};
+    this.ratedForm.form.reset();
+    this.ngOnInit();
   }
 
   ngAfterViewChecked() {
@@ -94,7 +100,7 @@ export class RateFormComponent implements OnInit {
     this.ratedForm = this.currentForm;
     this.ratedForm.valueChanges
       .subscribe(
-        data => this.onValueChanged()
+      data => this.onValueChanged()
       );
   }
 

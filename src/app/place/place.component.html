@@ -5,12 +5,11 @@
     <thead>
       
           <tr>
-              <th>Type</th>
               <th>Name</th>
-              <th>Place ID</th>
-              <th>Rating</th>
-              <th>Address</th>
+              <th>Number of Rates</th>
               <th>RoadGame Rate</th>
+              <th>Handicap Accessible</th>
+              <th>Clean</th>
               <th>Rate This Place</th>
             </tr>
       
@@ -18,12 +17,12 @@
     <tbody>
       <tr *ngFor="let place of places">
         <td>{{place.name}}</td>
-    <!--    <td>{{movie.title}}</td>
-        <td>{{movie.distributor}}</td>
-        <td>{{movie.budget | currency}}</td>
-        <td>{{movie.releaseDate | date }}</td> -->
-        <td class="text-center">
-           <button class="btn btn-danger">Delete</button>
+        <td>{{place.totalRates}}</td>
+        <td>{{place.averageRate}}</td>
+        <td>
+          <div *ngFor="let ratingInfo of place.ratingInfo">
+          {{ratingInfo.isClean}}
+        </div>
         </td>
       </tr>
     </tbody>
