@@ -31,6 +31,8 @@ export class RateFormComponent implements OnInit {
 
   ratingInfo: any[];
 
+  ratingInfoTest: any[];
+
   placeId;
 
 
@@ -69,6 +71,15 @@ export class RateFormComponent implements OnInit {
     console.log(this.ratingInfo)
   }
 
+  getRatingsbyPlace() {
+    this.dataService.getRecords("ratinginfo")
+    .subscribe(ratingInfoTest => {
+    this.ratingInfoTest = ratingInfoTest
+      //   this.getRecordForEdit();
+    },
+    error => this.errorMessage = <any>error);
+  console.log(this.ratingInfo)
+  }
 
   getRecordForEdit() {
     this.route.params

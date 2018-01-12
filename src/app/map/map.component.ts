@@ -25,8 +25,8 @@ export class MapComponent implements OnInit {
 
   places: any[];
 
-  placesForm: NgForm;
   @ViewChild('placesForm')
+  placesForm: NgForm;
 
  
   @ViewChild("search")

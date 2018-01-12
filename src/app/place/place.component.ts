@@ -1,9 +1,10 @@
 import 'rxjs/add/operator/switchMap';
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
+import { NgForm } from '@angular/forms';
 import { fadeInAnimation } from '../animations/fade-in.animation';
-
+import { Router } from '@angular/router';
 
 import { DataService } from '../data.service'
 
@@ -20,11 +21,14 @@ export class PlaceComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
   places: any[];
+   @ViewChild('placesForm')
+    placesForm: NgForm;
 
   constructor(
     private dataService: DataService,
      private route: ActivatedRoute,
-     private location: Location
+     private location: Location,
+     private router: Router,
   ) {}
 
   getPlaces(){
@@ -37,6 +41,16 @@ export class PlaceComponent implements OnInit {
 
   ngOnInit() {
    this.getPlaces();
+  }
+
+  addPlace(placesForm: NgForm) {
+    this.dataService.addRecord("places", placesForm.value)
+      .subscribe(
+      ratedPlace => {
+        this.successMessage = "Record added successfully",
+        this.router.navigate(['/place/add', ratedPlace.id]);
+      },
+      error => this.errorMessage = <any>error);
   }
 
 }

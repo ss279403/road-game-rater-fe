@@ -1,6 +1,8 @@
 <br>
 <br>
 
+
+
 <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
     <thead>
       
@@ -16,14 +18,27 @@
     </thead>
     <tbody>
       <tr *ngFor="let place of places">
+          <form novalidate (ngSubmit)="addPlace(placesForm)" #placesForm="ngForm" class="form-horizontal">
+              <input [ngModel]="place?.name" ngModel #name="ngModel" type="hidden" name="name" value="place.name">
+              <input [ngModel]="place?.address" ngModel #address="ngModel" type="hidden" name="address" value="place.address">
+              <input [ngModel]="place?.googleId" ngModel #place_id="ngModel" type="hidden" name="googleId" value="place.googleId">
+          </form>
         <td>{{place.name}}</td>
         <td>{{place.totalRates}}</td>
         <td>{{place.averageRate}}</td>
         <td>
           <div *ngFor="let ratingInfo of place.ratingInfo">
-          {{ratingInfo.isClean}}
+          {{ratingInfo.isHandicap}}
         </div>
         </td>
+        <td>
+            <div *ngFor="let ratingInfo of place.ratingInfo">
+            {{ratingInfo.isClean}}
+          </div>
+          </td>
+        <td class="text-center">    
+            <button (click)="addPlace(placesForm)" class="btn btn-danger">Rate</button>
+       </td>
       </tr>
     </tbody>
   </table>

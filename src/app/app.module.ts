@@ -16,6 +16,7 @@ import { PlaceComponent } from './place/place.component';
 import { NavigationComponent } from './navigation/navigation.component';
 //import { environment } from '../environments/environment';
 
+
 @NgModule({
   declarations: [
     AppComponent,
