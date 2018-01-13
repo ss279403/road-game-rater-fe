@@ -4,8 +4,23 @@
 <div class="form-group">
   <input #search [formControl]="searchControl"  placeholder="search for location"  type="text" class="form-control">
 </div>
-<br/>
-<br/>
+
+<div *ngIf="!nearByPlaces">
+    <div class="loader">
+ <!--   <h2>Finding Bathrooms</h2> -->
+    <div class="wrapper">
+      <div class="toiletroll">
+        <div class="roll"></div>
+        <div class="papers">
+          <div class="paper">Loading</div>
+          <div class="paper">Wait</div>
+          <div class="paper">Please</div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
 <div #myMap></div>
 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
   <agm-marker label="you are here" [latitude]="lat" [longitude]="lng"></agm-marker>
@@ -17,8 +32,6 @@
 
 <br>
 <br>
-
-
 
 <div *ngIf="nearByPlaces">
 
@@ -65,4 +78,5 @@
 </table>
 
 </div>
+
   

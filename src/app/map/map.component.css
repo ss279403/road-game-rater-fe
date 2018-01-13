@@ -8,3 +8,146 @@ agm-map {
 .form-horizontal { display: none
 
 }
+/*
+.loader {
+    position: absolute;
+    top: 49%;
+    left: 41%;
+} */
+
+  @import url(https://fonts.googleapis.com/css?family=Roboto:400);
+  html {
+    height: 100%;
+  }
+  body {
+    background: #444;
+    text-align: center;
+  }
+  h2 {
+    font: bold 25px 'Roboto';
+    color: #ccc;
+    text-shadow: 2px 2px 2px black;
+    position: relative;
+    left: 32%;
+  }
+  .wrapper {
+    display: inline-block;
+    text-align: left;
+    position: relative;
+    left: 45%;
+    width: 120px;
+    height: 210px;
+    margin: -40px 0 -20px 0;
+  }
+  .toiletroll {
+    position: relative;
+    width: 120px;
+    height: 210px;
+  }
+  .toiletroll .roll {
+    position: absolute;
+    width: 100px;
+    height: 60px;
+    background: #eee;
+    border-radius: 15% 0% 0% 15% / 50% 0% 0% 50%;
+    box-shadow: inset 0 0 1px rgba(0, 0, 0, .5), inset 0 5px 10px rgba(0, 0, 0, .3);
+    background-image: linear-gradient(to bottom, #eee 0%, #eee 49%, #bbb 50%, #eee 51%, #eee 100%);
+    /* W3C */
+    background-size: 100px 60px;
+    animation: move-roll 1.66667s linear infinite;
+  }
+  .toiletroll .roll:before {
+    position: absolute;
+    content: "";
+    z-index: 1;
+    height: 100%;
+    width: 20%;
+    right: -10%;
+    border-radius: 50%;
+    background-color: #eee;
+    animation: anim-rollend 0.2s linear infinite;
+    background-image: radial-gradient(ellipse at center, #eee 0%, #eee 4%, #bbb 5%, #eee 6%, #eee 9%, #bbb 10%, #eee 11%, #eee 14%, #bbb 15%, #eee 16%, #eee 19%, #bbb 20%, #eee 21%, #eee 24%, #bbb 25%, #eee 26%, #eee 29%, #bbb 30%, #eee 31%, #eee 34%, #bbb 35%, #eee 36%, #eee 39%, #bbb 40%, #eee 41%, #eee 44%, #bbb 45%, #eee 46%, #eee 49%, #bbb 50%, #eee 51%, #eee 54%, #bbb 55%, #eee 56%, #eee 59%, #bbb 60%, #eee 61%, #eee 64%, #bbb 65%, #eee 66%, #eee 69%, #bbb 70%, #eee 71%, #eee 74%, #bbb 75%, #eee 76%, #eee 79%, #bbb 80%, #eee 81%, #eee 84%, #bbb 85%, #eee 86%, #eee 89%, #bbb 90%, #eee 91%, #eee 94%, #bbb 95%, #eee 96%, #eee 100%);
+    background-repeat: no-repeat;
+    box-shadow: inset 0 0 1px rgba(0, 0, 0, .5);
+  }
+  .toiletroll .roll:after {
+    position: absolute;
+    content: "";
+    z-index: 1;
+    height: 40%;
+    width: 8%;
+    top: 30%;
+    right: -4%;
+    border-radius: 50%;
+    background: black;
+    box-shadow: inset 0 0 1px rgba(0, 0, 0, .5);
+  }
+  .toiletroll .papers {
+    position: relative;
+    z-index: -1;
+    width: 100px;
+    height: 180px;
+    top: 30px;
+    left: 10px;
+    overflow: hidden;
+  }
+  .toiletroll .papers:after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 33%;
+    box-shadow: inset 0 30px 10px rgba(0, 0, 0, .2);
+  }
+  .toiletroll .papers .paper {
+    position: absolute;
+    width: 100px;
+    height: 60px;
+    background-color: #eee;
+    box-shadow: inset 0 0 1px rgba(0, 0, 0, .5);
+    text-align: center;
+    font: bold 15px/60px 'Roboto';
+    color: #bbb;
+    text-shadow: -1px -1px 1px rgba(255, 255, 255, .4), 1px 1px 1px rgba(0, 0, 0, .4);
+    animation: move-paper 2s linear infinite;
+  }
+  .toiletroll .papers .paper:nth-of-type(2) {
+    animation-delay: -0.66667s;
+  }
+  .toiletroll .papers .paper:nth-of-type(3) {
+    animation-delay: -1.33333s;
+  }
+  @keyframes move-paper {
+    0% {
+      opacity: 1;
+      transform: translateY(-60px);
+    }
+    50% {
+      transform: translateY(20px);
+    }
+    75% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(120px);
+    }
+  }
+  @keyframes move-roll {
+    0% {
+      background-position: 0px 120px;
+    }
+    100% {
+      background-position: 0px 0px;
+    }
+  }
+  @keyframes anim-rollend {
+    0% {
+      background-size: 100% 100%;
+      background-position: 0 0;
+    }
+    50% {
+      background-size: 98% 98%;
+      background-position: 1px 1px;
+    }
+  }
+  

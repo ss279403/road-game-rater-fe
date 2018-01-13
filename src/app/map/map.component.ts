@@ -19,7 +19,7 @@ export class MapComponent implements OnInit {
 
   lat: number = 37.0902;
   lng: number = -95.7129;
-  zoom: number = 18;
+  zoom: number = 17;
   searchControl = new FormControl();
 
   nearByPlaces: any[];
@@ -61,13 +61,12 @@ export class MapComponent implements OnInit {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["geocode", "establishment"]
       });
-
+      
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
-
+          
           //get the place result
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-
           console.log(place);
 
           //verify result
@@ -105,6 +104,19 @@ export class MapComponent implements OnInit {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
         
+         var request = {
+          location: new google.maps.LatLng(this.lat, this.lng),
+          rankBy: google.maps.places.RankBy.DISTANCE,
+          types: ["restaurant", "gas_station", "grocery_or_supermarket"]
+        };
+
+        let places = new google.maps.places.PlacesService(this.mapElementRef.nativeElement);
+        places.nearbySearch(request, (results, status) => {
+          if (status == google.maps.places.PlacesServiceStatus.OK) {
+            this.nearByPlaces = results;
+            console.log("nearby", this.nearByPlaces)
+          }          
+        })
       });
     }
   }
