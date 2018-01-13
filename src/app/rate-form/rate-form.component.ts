@@ -1,5 +1,5 @@
 import 'rxjs/add/operator/switchMap';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
@@ -7,6 +7,7 @@ import { fadeInAnimation } from '../animations/fade-in.animation';
 
 
 import { DataService } from '../data.service'
+
 @Component({
   selector: 'app-rate-form',
   templateUrl: './rate-form.component.html',
@@ -24,6 +25,7 @@ export class RateFormComponent implements OnInit {
 
   successMessage: string;
   errorMessage: string;
+
 
   ratedPlace: object;
 
@@ -97,6 +99,7 @@ export class RateFormComponent implements OnInit {
       .subscribe(
       ratedPlace => this.successMessage = "Record added successfully",
       error => this.errorMessage = <any>error);
+      console.log("rated place", this.ratedPlace)
     //     this.dataService.addRecord("ratinginfo", ratedForm.value);
     this.ratedPlace = {};
     this.ratedForm.form.reset();

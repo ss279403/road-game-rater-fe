@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild, ElementRef, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
 import { MapsAPILoader, AgmMap } from '@agm/core';
@@ -15,13 +15,14 @@ import { fadeInAnimation } from '../animations/fade-in.animation';
 })
 export class MapComponent implements OnInit {
 
-  userSearch: String;
+  //userSearch: String;
 
   lat: number = 37.0902;
   lng: number = -95.7129;
   zoom: number = 18;
   searchControl = new FormControl();
-  nearByPlaces;
+
+  nearByPlaces: any[];
 
   places: any[];
 
@@ -90,8 +91,8 @@ export class MapComponent implements OnInit {
           places.nearbySearch(request, (results, status) => {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
               this.nearByPlaces = results;
-              console.log(this.nearByPlaces)
-            }
+              console.log("nearby", this.nearByPlaces)
+            }          
           })
         });
       });
@@ -125,7 +126,7 @@ export class MapComponent implements OnInit {
      .subscribe(
       places => this.places = places,
       error =>  this.errorMessage = <any>error);
-      console.log(this.places);
+      console.log("places", this.places);
       
   }
 

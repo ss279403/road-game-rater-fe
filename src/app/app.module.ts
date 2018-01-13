@@ -15,11 +15,12 @@ import { RateFormComponent } from './rate-form/rate-form.component';
 import { PlaceComponent } from './place/place.component';
 import { NavigationComponent } from './navigation/navigation.component';
 //import { environment } from '../environments/environment';
-
+import { FilterPipe }from './filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
+    FilterPipe,
     MapComponent,
     RateFormComponent,
     PlaceComponent,

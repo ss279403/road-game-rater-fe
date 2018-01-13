@@ -2,6 +2,8 @@
 <br>
 
 
+  <input [(ngModel)]="searchText" placeholder="enter search term here">
+
 
 <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
     <thead>
@@ -12,12 +14,13 @@
               <th>RoadGame Rate</th>
               <th>Handicap Accessible</th>
               <th>Clean</th>
+              <th>Address</th>
               <th>Rate This Place</th>
             </tr>
       
     </thead>
     <tbody>
-      <tr *ngFor="let place of places">
+      <tr *ngFor="let place of places | filter : searchText">
           <form novalidate (ngSubmit)="addPlace(placesForm)" #placesForm="ngForm" class="form-horizontal">
               <input [ngModel]="place?.name" ngModel #name="ngModel" type="hidden" name="name" value="place.name">
               <input [ngModel]="place?.address" ngModel #address="ngModel" type="hidden" name="address" value="place.address">
@@ -36,6 +39,7 @@
             {{ratingInfo.isClean}}
           </div>
           </td>
+          <td>{{place.address}}</td>
         <td class="text-center">    
             <button (click)="addPlace(placesForm)" class="btn btn-danger">Rate</button>
        </td>
