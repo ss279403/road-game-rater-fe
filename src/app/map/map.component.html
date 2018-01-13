@@ -44,6 +44,7 @@
       <th>Times Rated</th>
       <th>RoadGame Rate</th>
       <th>Rate This Place</th>
+      <th>See Reviews</th>
     </tr>
   </thead>
   <tbody>
@@ -73,6 +74,13 @@
     <td class="text-center">    
         <button (click)="addPlace(placesForm)" class="btn btn-danger">Rate</button>
    </td>
+   <td>
+      <div *ngFor="let ratedPlace of places">
+        <div *ngIf="ratedPlace.name == place.name">
+         <a class="btn btn-primary" [routerLink]="['/place/', ratedPlace.id]">See Reviews</a>&nbsp;
+      </div>
+    </div> 
+  </td>
     </tr>
   </tbody>
 </table>

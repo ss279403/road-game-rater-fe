@@ -26,6 +26,8 @@ export class MapComponent implements OnInit {
 
   places: any[];
 
+ // ratedPlace: object;
+
   @ViewChild('placesForm')
   placesForm: NgForm;
 

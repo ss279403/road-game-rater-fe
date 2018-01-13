@@ -16,6 +16,7 @@
               <th>Clean</th>
               <th>Address</th>
               <th>Rate This Place</th>
+              <th>See Reviews</th>
             </tr>
       
     </thead>
@@ -43,6 +44,9 @@
         <td class="text-center">    
             <button (click)="addPlace(placesForm)" class="btn btn-danger">Rate</button>
        </td>
+       <td>
+            <a class="btn btn-primary" [routerLink]="['/place/', place.id]">See Reviews</a>&nbsp;
+      </td>
       </tr>
     </tbody>
   </table>

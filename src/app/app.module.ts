@@ -16,6 +16,7 @@ import { PlaceComponent } from './place/place.component';
 import { NavigationComponent } from './navigation/navigation.component';
 //import { environment } from '../environments/environment';
 import { FilterPipe }from './filter.pipe';
+import { SingleplaceComponent } from './singleplace/singleplace.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FilterPipe }from './filter.pipe';
     MapComponent,
     RateFormComponent,
     PlaceComponent,
-    NavigationComponent ],
+    NavigationComponent,
+    SingleplaceComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,
