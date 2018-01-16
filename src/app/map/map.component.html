@@ -23,9 +23,9 @@
 
 <div #myMap></div>
 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-  <agm-marker label="you are here" [latitude]="lat" [longitude]="lng"></agm-marker>
-  <agm-marker *ngFor="let place of nearByPlaces" [latitude]="place.geometry.location.lat()" [longitude]="place.geometry.location.lng()">
-    <agm-info-window>{{place.name}}</agm-info-window>
+  <agm-marker label="Current Location" [latitude]="lat" [longitude]="lng"></agm-marker>
+  <agm-marker class="markers" [iconUrl]="markerIconUrl()" *ngFor="let place of nearByPlaces" [latitude]="place.geometry.location.lat()" [longitude]="place.geometry.location.lng()">
+    <agm-info-window>{{place.name}} <br> <a href="https://maps.google.com/?q={{place.vicinity}}">Get Directions</a></agm-info-window>
   </agm-marker>
 </agm-map>
 

@@ -6,7 +6,7 @@ import { DataService } from '../data.service'
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { fadeInAnimation } from '../animations/fade-in.animation';
-import {NgStyle} from '@angular/common';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-map',
@@ -27,9 +27,7 @@ export class MapComponent implements OnInit {
 
   places: any[];
 
-  percentage: number = 50;
-
- // ratedPlace: object;
+  // ratedPlace: object;
 
   @ViewChild('placesForm')
   placesForm: NgForm;
@@ -44,6 +42,7 @@ export class MapComponent implements OnInit {
   successMessage: string;
   errorMessage: string;
 
+  infoWindowId = 0;
 
   constructor(
     private dataService: DataService,
@@ -144,7 +143,10 @@ export class MapComponent implements OnInit {
       places => this.places = places,
       error =>  this.errorMessage = <any>error);
       console.log("places", this.places);
-      
-  }
+    }
+
+    markerIconUrl() {
+      return ('../../assets/images/goldensmall.png')
+    }
 
 }
