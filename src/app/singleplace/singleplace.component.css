@@ -36,3 +36,38 @@
   em { font-style: italic; }
   h1 { font-size: 24px; margin-bottom: 25px; font-weight: bold; text-transform: uppercase; }
   h2 { font-size: 16px; margin-bottom: 15px;}
+
+  .name {
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+  font-size: 28px;
+  padding: 40px 20px;
+  text-align: center;
+  text-transform: uppercase;
+  text-rendering: optimizeLegibility;
+  }
+  
+  #name {
+    color: #131313;
+    background-color: #e7e5e4;
+    letter-spacing: .1em;
+    text-shadow: 
+       1px -1px  0#767676, 
+      -1px 2px 1px  #767474, 
+      -2px 4px 1px #7f7d7d, 
+      -3px 6px 1px #8b8a89, 
+      -4px 8px 1px #949392, 
+      -5px 10px 1px #9e9c9c, 
+      -6px 12px 1px #a8a6a6, 
+      -7px 14px 1px #b7b6b5, 
+      -8px 16px 1px #c1bfbf, 
+      -9px 18px 1px #cbc9c8, 
+      -10px 20px 1px #e2e0df, 
+      -11px 22px 1px #e4e3e2;
+  }
+
+  .ratebutton {
+      position: relative;
+      left: 43.5%;
+  }
+
+  

@@ -18,6 +18,8 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { FilterPipe }from './filter.pipe';
 import { SingleplaceComponent } from './singleplace/singleplace.component';
 import { RatingModule } from 'ngx-bootstrap/rating';
+import { AuthenticationService } from './authentication.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { RatingModule } from 'ngx-bootstrap/rating';
     RateFormComponent,
     PlaceComponent,
     NavigationComponent,
-    SingleplaceComponent ],
+    SingleplaceComponent,
+    LoginComponent ],
   imports: [
     BrowserModule,
     RatingModule.forRoot(),
@@ -35,7 +38,7 @@ import { RatingModule } from 'ngx-bootstrap/rating';
     BrowserAnimationsModule,
     CommonModule,
     HttpModule,
-  //  MatDialogModule,
+    //MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
       AgmCoreModule.forRoot({
@@ -44,7 +47,7 @@ import { RatingModule } from 'ngx-bootstrap/rating';
       libraries: ["places"]
       }),
     ],
-  providers: [DataService],
+  providers: [DataService, AuthenticationService],
 
   bootstrap: [ AppComponent ]
 })
