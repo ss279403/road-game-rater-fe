@@ -6,6 +6,7 @@ import { DataService } from '../data.service'
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { fadeInAnimation } from '../animations/fade-in.animation';
+import {NgStyle} from '@angular/common';
 
 @Component({
   selector: 'app-map',
@@ -25,6 +26,8 @@ export class MapComponent implements OnInit {
   nearByPlaces: any[];
 
   places: any[];
+
+  percentage: number = 50;
 
  // ratedPlace: object;
 

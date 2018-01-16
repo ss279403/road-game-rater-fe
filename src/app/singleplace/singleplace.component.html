@@ -1,31 +1,73 @@
 <br>
 <br>
+<div *ngIf="place">
+  <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
+    <thead>
+      <tr>
+        <th>Handicap Equipped</th>
+        <th>Family Bathroom</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div *ngFor="let ratingInfo of place.ratingInfo; index as i; last as isLast">
+            <div *ngIf="isLast && ratingInfo.isHandicap == true">
+              <img class="familypic" alt="family sign" src="assets/images/handicap.png">
+            </div>
+            <div *ngIf="isLast && ratingInfo.isHandicap == false">
+                <img class="familypic" alt="family sign" src="assets/images/nohandicap.png">
+              </div>
+          </div>
+        </td>
+
+        <td>
+          <div *ngFor="let ratingInfo of place.ratingInfo; index as i; last as isLast">
+            <div *ngIf="isLast && ratingInfo.isFamily == true">
+              <img class="familypic" alt="family sign" src="assets/images/family.png">
+            </div>
+            <div *ngIf="isLast && ratingInfo.isHandicap == false">
+                <img class="familypic" alt="family sign" src="assets/images/nofamily.png">
+              </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 
 <div *ngIf="place">
-    <div>
-    {{place.name}}  {{place.averageRate}}
+  <div>
+    {{place.name}} 
+           <div class="star-ratings-sprite">
+              <div [ngStyle]="{'width': place.averageRate/5*100 + '%'}" class="star-ratings-sprite-rating"></div>
+            </div>
+          </div>
+    
     <a class="btn btn-primary" [routerLink]="['/place/add/', place.id]">Rate this Bathroom</a>&nbsp;
-   
+
     <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
-       <thead>
-         <tr>
-           <th>Rating</th>
-           <th>Was it clean?</th>
-           <th>Handicap Equiped?</th>
-           <th>Family Bathroom?</th>
-           <th>Comments</th>
-           </tr>
-       </thead>
-       <tbody>
-         <tr *ngFor="let rate of place.ratingInfo">
-           <td>{{rate.rating}}</td>
-           <td>{{rate.isClean}}</td>
-           <td>{{rate.isHandicap}}</td>
-           <td>{{rate.isFamily}}</td>
-           <td>{{rate.comments}}</td> 
-         </tr>
-       </tbody>
-     </table>
-   </div>
-   
+      <thead>
+        <tr>
+          <th>Rating</th>
+          <th>Was it clean?</th>
+          <th>Comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rate of place.ratingInfo">
+          <td>{{rate.rating}}</td>
+          <td>
+                <div *ngIf="rate.isClean == true">
+                  <img class="pic" alt="clean" src="assets/images/clean.png">
+                </div>
+                <div *ngIf="rate.isClean == false">
+                    <img class="pic" alt="poo" src="assets/images/poo.png">
+                  </div>
+            </td>
+          <td>{{rate.comments}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

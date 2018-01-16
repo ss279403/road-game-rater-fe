@@ -5,25 +5,28 @@
 
 
 <form novalidate (ngSubmit)="saveRating(ratedForm)" #ratedForm="ngForm" class="form-horizontal">
-   <div class="form-group">
-     <label for="rating" class="col-sm-2 control-label">Rating 1-5</label>
-     <div class="col-sm-10">
+
  <!--      <input [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" type="number" class="form-control" id="rating" name="rating" min="1"
          max="5"> -->
-         <input [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" name="rating" type="radio" id="rating" value="1" /><span>★☆☆☆☆</span>
-         <br>
-         <input [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" name="rating" type="radio" id="rating" value="2" /><span>★★☆☆☆</span>
-         <br>
-         <input [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" name="rating" type="radio" id="rating" value="3" /><span>★★★☆☆</span>
-         <br>
-         <input [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" name="rating" type="radio" id="rating" value="4" /><span>★★★★☆</span>
-         <br>
-         <input [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" name="rating" type="radio" id="rating" value="5" /><span>★★★★★</span>
+         <div class="form-group">
+          <label for="rating" class="col-sm-2 control-label">Rating</label>
+          
+            <rating [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" [max]="5" [customTemplate]="tt"  id="rating" name="rating"
+              [readonly]="isReadonly"></rating>
+              <ng-template #tt let-i="index" let-v="value">
+                <div class="btn btn-{{i < v ? 'warning' : 'default'}}">
+                  {{i < v ? '&#9733;' : '&#9734;'}}
+                </div>
+              </ng-template>
+
+     
        <span *ngIf="formErrors.rating" class="text-danger">
          {{ formErrors.rating }}
        </span> 
-     </div>
+     
    </div>
+
+ 
  
    <div class="form-group">
      <label for="isClean" class="col-sm-2 control-label">Was it Clean?</label>
@@ -86,7 +89,7 @@
      </div>
    </div> -->
 
-      
+   
    <div class="form-group">
       <label for="comments" class="col-sm-2 control-label"></label>
    <div class="col-sm-10">
@@ -98,7 +101,17 @@
     </div> 
     </div>
 
-   
+    <div class="form-group">
+
+      <div class="col-sm-offset-2 col-sm-10">
+  
+          <input type="file" id="file" name="file"/>
+  
+      </div>
+  
+   </div>
+  
+  
  
   
    <div class="form-group">
@@ -129,6 +142,7 @@
         <td>{{rate.isHandicap}}</td>
         <td>{{rate.isFamily}}</td>
         <td>{{rate.comments}}</td> 
+        <td>{{rate.image}}</td>
       </tr>
     </tbody>
   </table>

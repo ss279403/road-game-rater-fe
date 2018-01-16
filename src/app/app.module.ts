@@ -17,6 +17,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 //import { environment } from '../environments/environment';
 import { FilterPipe }from './filter.pipe';
 import { SingleplaceComponent } from './singleplace/singleplace.component';
+import { RatingModule } from 'ngx-bootstrap/rating';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { SingleplaceComponent } from './singleplace/singleplace.component';
     SingleplaceComponent ],
   imports: [
     BrowserModule,
+    RatingModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule,
     CommonModule,

@@ -6,14 +6,16 @@
 
 
 <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
+
     <thead>
       
           <tr>
               <th>Name</th>
               <th>Number of Rates</th>
               <th>RoadGame Rate</th>
-              <th>Handicap Accessible</th>
-              <th>Clean</th>
+              <th>Handicap Equipped</th>
+              <th>Family Bathroom Available</th>
+              <th>Most Recent Review Noted</th>
               <th>Address</th>
               <th>Rate This Place</th>
               <th>See Reviews</th>
@@ -29,12 +31,33 @@
           </form>
         <td>{{place.name}}</td>
         <td>{{place.totalRates}}</td>
-        <td>{{place.averageRate}}</td>
         <td>
-          <div *ngFor="let ratingInfo of place.ratingInfo">
-          {{ratingInfo.isHandicap}}
+            <div *ngFor="let ratedPlace of places">
+              <div *ngIf="ratedPlace.name == place.name">
+                <div class="star-ratings-sprite">
+                  <div [ngStyle]="{'width': ratedPlace.averageRate/5*100 + '%'}" class="star-ratings-sprite-rating"></div>
+                </div>
+              </div>
+            </div>
+          </td>
+
+        <td>
+            <div *ngFor="let ratingInfo of place.ratingInfo; index as i; last as isLast">
+                <div *ngIf="isLast && ratingInfo.isHandicap == true">
+                    <img class="familypic" alt="family sign" src="assets/images/handicap.png">
+            </div>
+          </div>
+          </td>
+
+        <td>
+          <div *ngFor="let ratingInfo of place.ratingInfo; index as i; last as isLast">
+              <div *ngIf="isLast && ratingInfo.isFamily == true">
+                  <img class="familypic" alt="family sign" src="assets/images/family.png">
+          </div>
         </div>
         </td>
+   
+
         <td>
             <div *ngFor="let ratingInfo of place.ratingInfo">
             {{ratingInfo.isClean}}

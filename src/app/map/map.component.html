@@ -2,12 +2,12 @@
 <br>
 <h1>Enter Your Location</h1>
 <div class="form-group">
-  <input #search [formControl]="searchControl"  placeholder="search for location"  type="text" class="form-control">
+  <input #search [formControl]="searchControl" placeholder="search for location" type="text" class="form-control">
 </div>
 
 <div *ngIf="!nearByPlaces">
-    <div class="loader">
- <!--   <h2>Finding Bathrooms</h2> -->
+  <div class="loader">
+    <!--   <h2>Finding Bathrooms</h2> -->
     <div class="wrapper">
       <div class="toiletroll">
         <div class="roll"></div>
@@ -18,8 +18,8 @@
         </div>
       </div>
     </div>
-    </div>
-    </div>
+  </div>
+</div>
 
 <div #myMap></div>
 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
@@ -35,56 +35,56 @@
 
 <div *ngIf="nearByPlaces">
 
-<table class="table table-striped table-bordered" id="dataTable" style="width:100%">
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Times Rated</th>
-      <th>RoadGame Rate</th>
-      <th>Rate This Place</th>
-      <th>See Reviews</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let place of nearByPlaces">
+  <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Times Rated</th>
+        <th>RoadGame Rate</th>
+        <th>Rate This Place</th>
+        <th>See Reviews</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let place of nearByPlaces">
         <form novalidate (ngSubmit)="addPlace(placesForm)" #placesForm="ngForm" class="form-horizontal">
-            <input [ngModel]="place?.name" ngModel #name="ngModel" type="hidden" name="name" value="place.name">
-            <input [ngModel]="place?.vicinity" ngModel #address="ngModel" type="hidden" name="address" value="place.vicinity">
-            <input [ngModel]="place?.place_id" ngModel #place_id="ngModel" type="hidden" name="googleId" value="place.place_id">
+          <input [ngModel]="place?.name" ngModel #name="ngModel" type="hidden" name="name" value="place.name">
+          <input [ngModel]="place?.vicinity" ngModel #address="ngModel" type="hidden" name="address" value="place.vicinity">
+          <input [ngModel]="place?.place_id" ngModel #place_id="ngModel" type="hidden" name="googleId" value="place.place_id">
         </form>
-      <td class="type">{{place.types[0]}}</td>
-      <td>{{place.name}}</td>
-      <td>{{place.vicinity}}</td>
-      <td>
-        <div *ngFor="let ratedPlace of places">
-          <div *ngIf="ratedPlace.name == place.name">
-          {{ratedPlace.totalRates}}
-        </div>
-      </div> 
-    </td>
-    <td>
-        <div *ngFor="let ratedPlace of places">
-          <div *ngIf="ratedPlace.name == place.name">
-          {{ratedPlace.averageRate}}
-        </div>
-      </div> 
-    </td>
-    <td class="text-center">    
-        <button (click)="addPlace(placesForm)" class="btn btn-danger">Rate</button>
-   </td>
-   <td>
-      <div *ngFor="let ratedPlace of places">
-        <div *ngIf="ratedPlace.name == place.name">
-         <a class="btn btn-primary" [routerLink]="['/place/', ratedPlace.id]">See Reviews</a>&nbsp;
-      </div>
-    </div> 
-  </td>
-    </tr>
-  </tbody>
-</table>
+        <td class="type">{{place.types[0]}}</td>
+        <td>{{place.name}}</td>
+        <td>{{place.vicinity}}</td>
+        <td>
+          <div *ngFor="let ratedPlace of places">
+            <div *ngIf="ratedPlace.name == place.name">
+              {{ratedPlace.totalRates}}
+            </div>
+          </div>
+        </td>
+        <td>
+          <div *ngFor="let ratedPlace of places">
+            <div *ngIf="ratedPlace.name == place.name">
+              <div class="star-ratings-sprite">
+                <div [ngStyle]="{'width': ratedPlace.averageRate/5*100 + '%'}" class="star-ratings-sprite-rating"></div>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="text-center">
+          <button (click)="addPlace(placesForm)" class="btn btn-danger">Rate</button>
+        </td>
+        <td>
+          <div *ngFor="let ratedPlace of places">
+            <div *ngIf="ratedPlace.name == place.name">
+              <a class="btn btn-primary" [routerLink]="['/place/', ratedPlace.id]">See Reviews</a>&nbsp;
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
 </div>
-
-  
