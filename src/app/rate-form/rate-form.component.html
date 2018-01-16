@@ -6,145 +6,148 @@
 
 <form novalidate (ngSubmit)="saveRating(ratedForm)" #ratedForm="ngForm" class="form-horizontal">
 
- <!--      <input [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" type="number" class="form-control" id="rating" name="rating" min="1"
+  <!--      <input [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" type="number" class="form-control" id="rating" name="rating" min="1"
          max="5"> -->
-         <div class="form-group">
-          <label for="rating" class="col-sm-2 control-label">Rating</label>
-          
-            <rating [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" [max]="5" [customTemplate]="tt"  id="rating" name="rating"
-              [readonly]="isReadonly"></rating>
-              <ng-template #tt let-i="index" let-v="value">
-                <div class="btn btn-{{i < v ? 'warning' : 'default'}}">
-                  {{i < v ? '&#9733;' : '&#9734;'}}
-                </div>
-              </ng-template>
+  <div class="form-group">
+    <label for="rating" class="col-sm-2 control-label">Rating</label>
 
-     
-       <span *ngIf="formErrors.rating" class="text-danger">
-         {{ formErrors.rating }}
-       </span> 
-     
-   </div>
+    <rating [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" [max]="5" [customTemplate]="tt" id="rating" name="rating"
+      [readonly]="isReadonly" required></rating>
+    <ng-template #tt let-i="index" let-v="value">
+      <div class="btn btn-{{i < v ? 'warning' : 'default'}}">
+        {{i
+        < v ? '&#9733;' : '&#9734;'}} </div>
+    </ng-template>
 
- 
- 
-   <div class="form-group">
-     <label for="isClean" class="col-sm-2 control-label">Was it Clean?</label>
-     <div class="col-sm-10">
-       <label>
-         <input [ngModel]="ratingInfo?.isClean" ngModel #isClean="ngModel" type="radio" value="true" class="form-control" id="isClean"
-           name="isClean"> Yes
-       </label>
-       <label>
-         <input [ngModel]="ratingInfo?.isClean" ngModel #isClean="ngModel" type="radio" value="false" class="form-control" id="isClean"
-           name="isClean"> No
-       </label>
- 
-       <span *ngIf="formErrors.isClean" class="text-danger">
-         {{ formErrors.isClean }}
-       </span> 
-     </div>
- 
-   </div>
-   <div class="form-group">
-     <label for="isHandicap" class="col-sm-2 control-label">Handicap Accessible?</label>
-     <div class="col-sm-10">
- 
-       <label>
-         <input [ngModel]="ratingInfo?.isHandicap" ngModel #isHandicap="ngModel" type="radio" value="true" class="form-control" id="isHandicap" name="isHandicap"> Yes
-       </label>
-       <label>
-         <input [ngModel]="ratingInfo?.isHandicap" ngModel #isHandicap="ngModel" type="radio" value="false" class="form-control" id="isHandicap" name="isHandicap"> No
-       </label>
- 
-       <span *ngIf="formErrors.isHandicap" class="text-danger">
-         {{ formErrors.isHandicap }}
-       </span> 
-     </div>
-     
- 
-   </div>
-   <div class="form-group">
-     <label for="isFamily" class="col-sm-2 control-label">Was there a Family Restroom?</label>
-     <div class="col-sm-10">
-       <label>
-         <input [ngModel]="ratingInfo?.isFamily" ngModel #isFamily="ngModel" type="radio" value="true" class="form-control" id="isFamily" name="isFamily"> Yes
-       </label>
-       <label>
-         <input [ngModel]="ratingInfo?.isFamily" ngModel #isFamily="ngModel" type="radio" value="false" class="form-control" id="isFamily" name="isFamily"> No
-       </label>     <span *ngIf="formErrors.isFamily" class="text-danger">
-         {{ formErrors.isFamily }} 
-       </span> 
-     </div>
-   </div>
- 
-  <!-- <div class="form-group">
-     <label for="comments" class="col-sm-2 control-label">Comments</label>
-     <div class="col-sm-10">
-       <input [ngModel]="ratingInfo?.comments" ngModel #comments="ngModel" type="text" class="form-control" id="comments" name="comments" required
-         minlength="2" maxlength="30">
-       <span *ngIf="formErrors.comments" class="text-danger">
-         {{ formErrors.comments }}
-       </span> 
-     </div>
-   </div> -->
 
-   
-   <div class="form-group">
+    <span *ngIf="formErrors.rating" class="text-danger">
+      {{ formErrors.rating }}
+    </span>
+
+    </div>
+
+
+
+    <div class="form-group">
+      <label for="isClean" class="col-sm-2 control-label">Was it Clean?</label>
+      <div class="col-sm-10">
+        <div class="divclass">
+        <ul>
+          <li>
+              <input [ngModel]="ratingInfo?.isClean" ngModel #isClean="ngModel" type="radio" value="true" class="form-control" id="isClean"
+                name="isClean" required>
+                <label id="labelId">Yes</label>
+            <div class="check"></div>
+          </li>
+        </ul>
+      </div>
+            <label>
+              <input [ngModel]="ratingInfo?.isClean" ngModel #isClean="ngModel" type="radio" value="false" class="form-control" id="isClean"
+                name="isClean" required> No
+            </label>
+        
+
+          <span *ngIf="formErrors.isClean" class="text-danger">
+            {{ formErrors.isClean }}
+          </span>
+      </div>
+      </div>
+
+
+    
+    <div class="form-group">
+      <label for="isHandicap" class="col-sm-2 control-label">Handicap Accessible?</label>
+      <div class="col-sm-10">
+
+        <label>
+          <input [ngModel]="ratingInfo?.isHandicap" ngModel #isHandicap="ngModel" type="radio" value="true" class="form-control" id="isHandicap"
+            name="isHandicap" required> Yes
+        </label>
+        <label>
+          <input [ngModel]="ratingInfo?.isHandicap" ngModel #isHandicap="ngModel" type="radio" value="false" class="form-control" id="isHandicap"
+            name="isHandicap" required> No
+        </label>
+
+        <span *ngIf="formErrors.isHandicap" class="text-danger">
+          {{ formErrors.isHandicap }}
+        </span>
+      </div>
+
+
+    </div>
+    <div class="form-group">
+      <label for="isFamily" class="col-sm-2 control-label">Was there a Family Restroom?</label>
+      <div class="col-sm-10">
+        <label>
+          <input [ngModel]="ratingInfo?.isFamily" ngModel #isFamily="ngModel" type="radio" value="true" class="form-control" id="isFamily"
+            name="isFamily" required> Yes
+        </label>
+        <label>
+          <input [ngModel]="ratingInfo?.isFamily" ngModel #isFamily="ngModel" type="radio" value="false" class="form-control" id="isFamily"
+            name="isFamily" required> No
+        </label>
+        <span *ngIf="formErrors.isFamily" class="text-danger">
+          {{ formErrors.isFamily }}
+        </span>
+      </div>
+    </div>
+
+
+
+    <div class="form-group">
       <label for="comments" class="col-sm-2 control-label"></label>
-   <div class="col-sm-10">
-      <span class="input-group-addon">Comments</span>
-      <input [ngModel]="ratingInfo?.comments" ngModel #comments="ngModel" type="text" class="form-control" id="comments" name="comments">
-         <span *ngIf="formErrors.comments" class="text-danger">
-         {{ formErrors.comments }}
-       </span> 
-    </div> 
+      <div class="col-sm-9">
+        <span class="input-group-addon">Comments</span>
+        <textarea [ngModel]="ratingInfo?.comments" ngModel #comments="ngModel" type="text" class="form-control" id="comments" name="comments"
+          rows="1" style="width:100%; height:350px;"></textarea>
+        <span *ngIf="formErrors.comments" class="text-danger">
+          {{ formErrors.comments }}
+        </span>
+      </div>
     </div>
 
     <div class="form-group">
 
       <div class="col-sm-offset-2 col-sm-10">
-  
-          <input type="file" id="file" name="file"/>
-  
+
+        <input type="file" id="file" name="file" />
+
       </div>
-  
-   </div>
-  
-  
- 
-  
-   <div class="form-group">
-     <div class="col-sm-offset-2 col-sm-10">
-       <button [disabled]="!ratedForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
-     </div>
-   </div>
- </form> 
 
- <div *ngIf="ratedPlace">
- <div>
- {{ratedPlace.name}}  {{ratedPlace.averageRate}}
+    </div>
 
- <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
-    <thead>
-      <tr>
-        <th>Rating</th>
-        <th>Was it clean?</th>
-        <th>Handicap Equiped?</th>
-        <th>Family Bathroom?</th>
-        <th>Comments</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let rate of ratedPlace.ratingInfo">
-        <td>{{rate.rating}}</td>
-        <td>{{rate.isClean}}</td>
-        <td>{{rate.isHandicap}}</td>
-        <td>{{rate.isFamily}}</td>
-        <td>{{rate.comments}}</td> 
-        <td>{{rate.image}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
 
+
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button [disabled]="!ratedForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+</form>
+
+<div *ngIf="ratedPlace">
+  <div>
+    {{ratedPlace.name}} {{ratedPlace.averageRate}}
+
+    <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
+      <thead>
+        <tr>
+          <th>Rating</th>
+          <th>Was it clean?</th>
+          <th>Handicap Equiped?</th>
+          <th>Family Bathroom?</th>
+          <th>Comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rate of ratedPlace.ratingInfo">
+          <td>{{rate.rating}}</td>
+          <td>{{rate.isClean}}</td>
+          <td>{{rate.isHandicap}}</td>
+          <td>{{rate.isFamily}}</td>
+          <td>{{rate.comments}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

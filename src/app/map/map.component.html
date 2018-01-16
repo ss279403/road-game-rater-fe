@@ -54,7 +54,7 @@
           <input [ngModel]="place?.vicinity" ngModel #address="ngModel" type="hidden" name="address" value="place.vicinity">
           <input [ngModel]="place?.place_id" ngModel #place_id="ngModel" type="hidden" name="googleId" value="place.place_id">
         </form>
-        <td class="type">{{place.types[0]}}</td>
+        <td class="type">{{deunderscore(place.types[0])}}</td>
         <td>{{place.name}}</td>
         <td>{{place.vicinity}}</td>
         <td>

@@ -32,7 +32,7 @@ export class MapComponent implements OnInit {
   @ViewChild('placesForm')
   placesForm: NgForm;
 
- 
+
   @ViewChild("search")
   searchElementRef: ElementRef;
 
@@ -49,13 +49,13 @@ export class MapComponent implements OnInit {
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private router: Router,
-   ) { }
+  ) { }
 
   ngOnInit() {
     this.setCurrentPosition();
     this.populateMap();
     this.getPlaces();
-   }
+  }
 
   private populateMap() {
 
@@ -65,10 +65,10 @@ export class MapComponent implements OnInit {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["geocode", "establishment"]
       });
-      
+
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
-          
+
           //get the place result
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
           console.log(place);
@@ -95,7 +95,7 @@ export class MapComponent implements OnInit {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
               this.nearByPlaces = results;
               console.log("nearby", this.nearByPlaces)
-            }          
+            }
           })
         });
       });
@@ -107,8 +107,8 @@ export class MapComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
-        
-         var request = {
+
+        var request = {
           location: new google.maps.LatLng(this.lat, this.lng),
           rankBy: google.maps.places.RankBy.DISTANCE,
           types: ["restaurant", "gas_station", "grocery_or_supermarket"]
@@ -119,34 +119,40 @@ export class MapComponent implements OnInit {
           if (status == google.maps.places.PlacesServiceStatus.OK) {
             this.nearByPlaces = results;
             console.log("nearby", this.nearByPlaces)
-          }          
+          }
         })
       });
     }
   }
 
-  
+
   addPlace(placesForm: NgForm) {
     this.dataService.addRecord("places", placesForm.value)
       .subscribe(
-      ratedPlace => {
-        this.successMessage = "Record added successfully",
-        this.router.navigate(['/place/add', ratedPlace.id]);
-      },
-      error => this.errorMessage = <any>error);
+        ratedPlace => {
+          this.successMessage = "Record added successfully"
+          this.router.navigate(['/place/add', ratedPlace.id])
+        },
+        error => this.errorMessage = <any>error
+      );
   }
 
 
-  getPlaces(){
+  getPlaces() {
     this.dataService.getRecords("places")
-     .subscribe(
-      places => this.places = places,
-      error =>  this.errorMessage = <any>error);
-      console.log("places", this.places);
-    }
+      .subscribe(
+        places => this.places = places,
+        error => this.errorMessage = <any>error
+      );
+    console.log("places", this.places);
+  }
 
-    markerIconUrl() {
-      return ('../../assets/images/goldensmall.png')
-    }
+  markerIconUrl() {
+    return ('../../assets/images/goldensmall.png')
+  }
+
+  deunderscore(str: string): string {
+    return str.replace(/_/g, ' ');
+  }
 
 }
