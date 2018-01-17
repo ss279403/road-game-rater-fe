@@ -1,0 +1,33 @@
+<br>
+<br>
+<br>
+
+
+
+<form novalidate (ngSubmit)="sendLogin(loginForm)" #loginForm="ngForm" class="form-horizontal">
+
+
+
+    <div class="form-group">
+        <label for="username" class="col-sm-3 control-label">User Name
+        <input [ngModel]="user?.username" ngModel #username="ngModel" type="text" class="form-control" id="username" name="username" required>
+      </label>
+        
+    </div>
+
+    <hr>
+
+    <div class="form-group">
+        <label for="password" class="col-sm-3 control-label">Password
+        <input [ngModel]="user?.password" ngModel #password="ngModel" type="text" class="form-control" id="password" name="password" required>
+      </label>
+        
+    </div>
+
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button [disabled]="!loginForm.form.valid" type="submit" class="btn btn-primary">Join the Party</button>
+      </div>
+    </div>
+</form>

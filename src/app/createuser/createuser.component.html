@@ -1,0 +1,51 @@
+<br>
+<br>
+<br>
+
+
+
+<form novalidate (ngSubmit)="saveUser(signUpForm)" #signUpForm="ngForm" class="form-horizontal">
+
+    <div class="form-group">
+        <label for="firstName" class="col-sm-3 control-label">First Name
+        <input [ngModel]="user?.firstName" ngModel #firstName="ngModel" type="text" class="form-control" id="firstName" name="firstName" required>
+      </label>
+        <span *ngIf="formErrors.firstName" class="text-danger"> {{ formErrors.firstName }} </span>
+    </div>
+
+    <hr>
+
+    <div class="form-group">
+        <label for="lastName" class="col-sm-3 control-label">Last Name
+        <input [ngModel]="user?.lastName" ngModel #lastName="ngModel" type="text" class="form-control" id="lastName" name="lastName" required>
+      </label>
+        <span *ngIf="formErrors.lastName" class="text-danger"> {{ formErrors.lastName }} </span>
+    </div>
+
+    <hr>
+
+    <div class="form-group">
+        <label for="username" class="col-sm-3 control-label">User Name
+        <input [ngModel]="user?.username" ngModel #username="ngModel" type="text" class="form-control" id="username" name="username" required>
+      </label>
+        <span *ngIf="formErrors.username" class="text-danger"> {{ formErrors.username }} </span>
+    </div>
+
+    <hr>
+
+    <div class="form-group">
+        <label for="password" class="col-sm-3 control-label">Password
+        <input [ngModel]="user?.password" ngModel #password="ngModel" type="text" class="form-control" id="password" name="password" required>
+      </label>
+        <span *ngIf="formErrors.password" class="text-danger"> {{ formErrors.password }} </span>
+    </div>
+
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button [disabled]="!signUpForm.form.valid" type="submit" class="btn btn-primary">Join the Party</button>
+      </div>
+    </div>
+</form>
+
+

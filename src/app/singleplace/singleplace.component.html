@@ -88,31 +88,11 @@
 
 
 <div *ngFor="let ratingInfo of place.ratingInfo">
-<span *ngIf="ratingInfo?.itemImageUrl">
-    <a href={{ratingInfo?.itemImageUrl}} target="_new">
-      <img [src]="ratingInfo?.itemImageUrl" />
+<span *ngIf="ratingInfo.itemImageUrl">
+    <a href={{ratingInfo.itemImageUrl}} target="_new">
+      <img [src]="ratingInfo.itemImageUrl" />
     </a>
   </span>
 </div>
 
-<div *ngFor="let ratingInfo of place.ratingInfo"></div>
-  <span>
-      <a href={{ratingInfo?.itemImageUrl}} target="_new">
-        <img [src]="ratingInfo?.itemImageUrl" />
-      </a>
-    </span>
-  </div>
 
-    <div *ngIf="place">
-        <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
-          <tbody>
-            <tr>
-              <td>
-                <div *ngFor="let ratingInfo of place.ratingInfo">
-                  {{ratingInfo.imageItemUrl}}
-                  </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>

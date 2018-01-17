@@ -16,18 +16,24 @@ import { PlaceComponent } from './place/place.component';
 import { NavigationComponent } from './navigation/navigation.component';
 //import { environment } from '../environments/environment';
 import { FilterPipe }from './filter.pipe';
+import { SortPipe } from './sort.pipe'
 import { SingleplaceComponent } from './singleplace/singleplace.component';
 import { RatingModule } from 'ngx-bootstrap/rating';
+import { CreateuserComponent } from './createuser/createuser.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FilterPipe,
+    SortPipe,
     MapComponent,
     RateFormComponent,
     PlaceComponent,
     NavigationComponent,
-    SingleplaceComponent ],
+    SingleplaceComponent,
+    CreateuserComponent,
+    LoginComponent ],
   imports: [
     BrowserModule,
     RatingModule.forRoot(),

@@ -24,6 +24,8 @@ export class PlaceComponent implements OnInit {
    @ViewChild('placesForm')
     placesForm: NgForm;
 
+  
+
   constructor(
     private dataService: DataService,
      private route: ActivatedRoute,
@@ -42,6 +44,8 @@ export class PlaceComponent implements OnInit {
   ngOnInit() {
    this.getPlaces();
   }
+
+
 
   addPlace(placesForm: NgForm) {
     this.dataService.addRecord("places", placesForm.value)

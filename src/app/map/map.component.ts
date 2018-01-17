@@ -13,6 +13,7 @@ import { NgStyle } from '@angular/common';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
   animations: [fadeInAnimation]
+
 })
 export class MapComponent implements OnInit {
 
@@ -26,6 +27,7 @@ export class MapComponent implements OnInit {
   nearByPlaces: any[];
 
   places: any[];
+
 
   // ratedPlace: object;
 
@@ -71,7 +73,7 @@ export class MapComponent implements OnInit {
 
           //get the place result
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          console.log(place);
+          console.log("this place", place);
 
           //verify result
           if (place.geometry === undefined || place.geometry === null) {
@@ -148,6 +150,7 @@ export class MapComponent implements OnInit {
   }
 
   markerIconUrl() {
+    if (this.places)
     return ('../../assets/images/goldensmall.png')
   }
 
