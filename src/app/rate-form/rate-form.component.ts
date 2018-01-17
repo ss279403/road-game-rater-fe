@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { fadeInAnimation } from '../animations/fade-in.animation';
-
+import * as AWS from 'aws-sdk';
 
 import { DataService } from '../data.service'
 
@@ -36,6 +36,10 @@ export class RateFormComponent implements OnInit {
   ratingInfoTest: any[];
 
   placeId;
+
+  imageUrl: string;
+
+  buttonText = "Submit"
 
 
   constructor(
@@ -103,7 +107,7 @@ export class RateFormComponent implements OnInit {
     //     this.dataService.addRecord("ratinginfo", ratedForm.value);
     this.ratedPlace = {};
     this.ratedForm.form.reset();
-    this.ngOnInit();
+    this.ngOnInit(); 
   }
 
   ngAfterViewChecked() {
@@ -117,6 +121,25 @@ export class RateFormComponent implements OnInit {
       data => this.onValueChanged()
       );
   }
+
+  imageUpload(image: any) {
+    this.buttonText = "Loading...";
+    console.log(AWS);
+    let imageUpload = image.target.files[0];
+    console.log(imageUpload.name);
+    console.log(image);
+    AWS.config.accessKeyId = '656114988662';
+    AWS.config.secretAccessKey = '5998f51a4ca776cad2675c7583d69bb327fa2766833bdaf1331f29a540fa9324';
+    
+    let bucket = new AWS.S3({ params: { Bucket: 'raterphotos' } });
+    let params = { Bucket: 'raterphotos', Key: imageUpload.name, Body: imageUpload, ACL: "public-read" };
+    bucket.upload(params, (error, res) => {
+      this.imageUrl = res["Location"];
+      console.log("error: ", error);
+      console.log("response: ", res["Location"]);
+      this.buttonText = "Submit";
+    });
+}
 
   onValueChanged() {
     let form = this.ratedForm.form;

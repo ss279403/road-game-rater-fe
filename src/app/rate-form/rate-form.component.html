@@ -110,9 +110,10 @@
 
       <div class="col-sm-offset-2 col-sm-10">
 
-        <input type="file" id="file" name="file" />
-
-      </div>
+          <label for="itemImageUpload">Upload your picture</label>
+          <input type="file" id="itemImageUpload" name="itemImage" (change)="imageUpload($event)">
+          <p class="help-block">Upload an image of your experience.</p>
+    </div>
 
     </div>
 
