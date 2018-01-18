@@ -3,6 +3,7 @@ import { DataService } from '../data.service';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -22,10 +23,12 @@ export class NavigationComponent implements OnInit {
 
   userIn: object;
   user: object;
+ 
 
   constructor(private dataService: DataService,
     private route: ActivatedRoute,
-    private location: Location) { }
+    private location: Location,
+    private router: Router) { }
 
   ngOnInit() {
     this.getUserIn();
@@ -40,36 +43,46 @@ export class NavigationComponent implements OnInit {
   }
 
   signOut() {
-    this.dataService.logOff("session/mine")
+       this.dataService.logOff("session/mine")
+          .subscribe(
+          userIn => {
+          this.userIn = userIn
+          this.refresh();
+          },
+          error => this.errorMessage = <any>error
+        );
+      }
+ 
+
+  getUser() {
+    this.dataService.seeUser("session/mine")
       .subscribe(
-      userIn => this.userIn = userIn,
+      user => this.user = user,
       error => this.errorMessage = <any>error);
-      this.refresh();
   }
 
-  getUser(){
-    this.dataService.seeUser("session/mine")
-    .subscribe(
-      user => this.user = user,
-      error =>  this.errorMessage = <any>error);
-    }
-
   sendLogin(loginForm: NgForm) {
-    this.dataService.userLogin("session/mine", loginForm.value)
-      .subscribe(
-      userLoggedIn => this.successMessage = "Record added successfully",
-      error => this.errorMessage = <any>error);
-      this.loginForm.reset();
-  } 
+
+          this.dataService.userLogin("session/mine", loginForm.value)
+            .subscribe(
+            userLoggedIn => {
+            this.successMessage = "Record added successfully"
+            this.refresh();
+            },
+            error => this.errorMessage = <any>error
+          );          
+        }
+
+  
 
   refresh() {
-    window.location.reload;
+    window.location.reload();
   }
 
   ngAfterViewChecked() {
     this.formChanged();
   }
-  
+
   formChanged() {
     this.loginForm = this.currentForm;
     this.loginForm.valueChanges
@@ -77,15 +90,15 @@ export class NavigationComponent implements OnInit {
       data => this.onValueChanged()
       );
   }
-  
+
   onValueChanged() {
     let form = this.loginForm.form;
-  
+
     for (let field in this.formErrors) {
       // clear previous error message (if any)
       this.formErrors[field] = '';
       const control = form.get(field);
-  
+
       if (control && control.dirty && !control.valid) {
         const messages = this.validationMessages[field];
         for (const key in control.errors) {
@@ -94,7 +107,7 @@ export class NavigationComponent implements OnInit {
       }
     }
   }
-  
+
   formErrors = {
     'rating': '',
     'isClean': '',
@@ -102,7 +115,7 @@ export class NavigationComponent implements OnInit {
     'isFamily': '',
     'comments': ''
   };
-  
+
   validationMessages = {
     'rating': {
       'required': 'Movie title is required.',
@@ -123,7 +136,7 @@ export class NavigationComponent implements OnInit {
     'comments': {
       'pattern': 'Release date should be in the following format: YYYY-MM-DD'
     }
-  
+
   };
 
 }
