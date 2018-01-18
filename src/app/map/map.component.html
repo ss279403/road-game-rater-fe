@@ -5,6 +5,15 @@
   <input #search [formControl]="searchControl" placeholder="search for location" type="text" class="form-control">
 </div>
 
+<div *ngIf=user>
+  {{user.firstName}}
+  {{user}}
+  {{user.firstname}}
+  {{user.first_Name}}
+  {{user.first_name}}
+  {{user.id}}
+</div>
+
 <div *ngIf="!nearByPlaces">
   <div class="loader">
     <!--   <h2>Finding Bathrooms</h2> -->
@@ -24,8 +33,12 @@
 <div #myMap></div>
 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
   <agm-marker label="Current Location" [latitude]="lat" [longitude]="lng"></agm-marker>
-  <agm-marker class="markers" [iconUrl]="markerIconUrl()" *ngFor="let place of nearByPlaces" [latitude]="place.geometry.location.lat()" [longitude]="place.geometry.location.lng()">
-    <agm-info-window>{{place.name}} <br> <a href="https://maps.google.com/?q={{place.vicinity}}">Get Directions</a></agm-info-window>
+  <agm-marker class="markers" [iconUrl]="markerIconUrl()" *ngFor="let place of nearByPlaces" [latitude]="place.geometry.location.lat()"
+    [longitude]="place.geometry.location.lng()">
+    <agm-info-window>{{place.name}}
+      <br>
+      <a href="https://maps.google.com/?q={{place.vicinity}}">Get Directions</a>
+    </agm-info-window>
   </agm-marker>
 </agm-map>
 
@@ -43,7 +56,9 @@
         <th>Address</th>
         <th>Times Rated</th>
         <th>RoadGame Rate</th>
-        <th>Rate This Place</th>
+
+        <th *ngIf=user>Rate This Place</th>
+
         <th>See Reviews</th>
       </tr>
     </thead>
@@ -73,9 +88,11 @@
             </div>
           </div>
         </td>
-        <td class="text-center">
+
+        <td *ngIf=user class="text-center">
           <button (click)="addPlace(placesForm)" class="btn btn-danger">Rate</button>
         </td>
+
         <td>
           <div *ngFor="let ratedPlace of places">
             <div *ngIf="ratedPlace.name == place.name">

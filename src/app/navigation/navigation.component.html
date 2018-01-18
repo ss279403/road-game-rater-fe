@@ -1,24 +1,130 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><img alt="RoadGameRater" src=""></a>
-            
-         </div>
+
+            <a class="navbar-brand" href="#">
+                <img alt="RoadGameRater" src="">
+            </a>
+
+        </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li routerLinkActive="active"><a routerLink="/map">Map</a></li>
-                <li routerLinkActive="active"><a routerLink="/place">Rated Locations</a></li>
-                <li routerLinkActive="active"><a routerLink="/aboutUs">About Us</a></li>
-                <li routerLinkActive="active"><a routerLink="/feedback">Feedback</a></li>
-                <li routerLinkActive="active"><a routerLink="/newUser">Join the Party</a></li>
-                <li routerLinkActive="active"><a routerLink="/login">Login</a></li>
+                <li routerLinkActive="active">
+                    <a routerLink="/map">Map</a>
+                </li>
+                <li routerLinkActive="active">
+                    <a routerLink="/place">Top Rated Locations</a>
+                </li>
             </ul>
-        </div><!--/.nav-collapse -->
+
+
+            <ul *ngIf="user" class="nav navbar-nav">
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Your Stall
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li routerLinkActive="active">
+                            <a routerLink="/login">Your Reviews</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li routerLinkActive="active" (click)="signOut()"><a routerLink="/map">Sign out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav">
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Our Stall
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li routerLinkActive="active">
+                            <a routerLink="/aboutUs">Our Story</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li routerLinkActive="active">
+                            <a routerLink="/feedback">Send Us Feedback</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+
+            <div *ngIf="!user">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <p class="navbar-text">Already have an account?</p>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <b>Login</b>
+                        <span class="caret"></span>
+                    </a>
+                    <ul id="login-dp" class="dropdown-menu">
+                        <li>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form novalidate class="form" (ngSubmit)="sendLogin(loginForm)" #loginForm="ngForm">
+                                        <div class="form-group">
+                                            <label class="sr-only" for="username">User Name</label>
+                                            <input [ngModel]="user?.username" ngModel #username="ngModel" type="text" class="form-control" id="username" name="username"
+                                                placeholder="User Name" required>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="password">Password</label>
+                                            <input [ngModel]="user?.password" ngModel #password="ngModel" type="password" class="form-control" id="password" name="password"
+                                                placeholder="Password" required>
+
+
+                                            <div class="help-block text-right">
+                                                <a href="">Forget the password ?</a>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <button [disabled]="!loginForm.form.valid" type="submit" class="btn btn-primary btn-block">Sign in</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <div class="bottom text-center">
+                                    New here ?
+                                            <a routerLink="/newUser">
+                                        <b>Join The Party</b>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+            <ul class="nav navbar-nav navbar-right">
+            <li *ngIf="user">
+                    <p class="navbar-text">Welcome Back:   <b>{{userIn.firstName}}</b> !</p>
+                </li>
+            </ul>
+
+
+
+
+
+
+
+        </div>
+        <!--/.nav-collapse -->
     </div>
-  </nav>
+</nav>

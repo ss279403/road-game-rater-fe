@@ -28,7 +28,7 @@
       <th>Handicap Equipped</th>
       <th>Family Bathroom</th>
       <th>Address</th>
-      <th>Rate This Place</th>
+      <th *ngIf=user>Rate This Place</th>
       <th>See Reviews</th>
     </tr>
 
@@ -71,9 +71,9 @@
       <td>
         {{place.address}}
       </td>
-      <td class="text-center">
-        <button (click)="addPlace(placesForm)" class="btn btn-danger">Rate</button>
-      </td>
+      <td *ngIf=user class="text-center">
+          <button (click)="addPlace(placesForm)" class="btn btn-danger">Rate</button>
+        </td>
       <td>
         <a class="btn btn-primary" [routerLink]="['/place/', place.id]">See Reviews</a>&nbsp;
       </td>

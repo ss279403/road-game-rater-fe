@@ -46,6 +46,8 @@ export class MapComponent implements OnInit {
 
   infoWindowId = 0;
 
+  user: object;
+
   constructor(
     private dataService: DataService,
     private mapsAPILoader: MapsAPILoader,
@@ -57,7 +59,15 @@ export class MapComponent implements OnInit {
     this.setCurrentPosition();
     this.populateMap();
     this.getPlaces();
+    this.getUser();
   }
+
+  getUser(){
+    this.dataService.seeUser("session/mine")
+    .subscribe(
+      user => this.user = user,
+      error =>  this.errorMessage = <any>error);
+    }
 
   private populateMap() {
 

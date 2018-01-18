@@ -1,5 +1,5 @@
 import 'rxjs/add/operator/switchMap';
-import { Component, OnInit, ViewChild, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
@@ -20,7 +20,10 @@ export class LoginComponent implements OnInit {
 
   successMessage: string;
   errorMessage: string;
+  userLoggedIn: object;
 
+
+  userIn: object;
 
   constructor(
     private dataService: DataService,
@@ -29,81 +32,92 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    // this.getUser();
   }
 
   sendLogin(loginForm: NgForm) {
     this.dataService.userLogin("session/mine", loginForm.value)
       .subscribe(
-        userLoggedIn => this.successMessage = "Record added successfully",
+      userLoggedIn => this.successMessage = "Record added successfully",
       error => this.errorMessage = <any>error);
-      console.log("rated place", this.loginForm)
-    this.loginForm.form.reset();
+ //   this.userLoggedIn = {};
+   // this.loginForm.form.reset();
+    //   this.getUser();
+    //   this.ngOnInit();   
+  } 
 
-  }
+
+getUser(){
+  this.dataService.getRecords("user")
+    .subscribe(
+    userIn => this.userIn = userIn,
+    error => this.errorMessage = <any>error);
+  console.log("user info", this.userIn)
+}
 
 
 
 
-  ngAfterViewChecked() {
-    this.formChanged();
-  }
 
-  formChanged() {
-    this.loginForm = this.currentForm;
-    this.loginForm.valueChanges
-      .subscribe(
-      data => this.onValueChanged()
-      );
-  }
+ngAfterViewChecked() {
+  this.formChanged();
+}
 
-  onValueChanged() {
-    let form = this.loginForm.form;
+formChanged() {
+  this.loginForm = this.currentForm;
+  this.loginForm.valueChanges
+    .subscribe(
+    data => this.onValueChanged()
+    );
+}
 
-    for (let field in this.formErrors) {
-      // clear previous error message (if any)
-      this.formErrors[field] = '';
-      const control = form.get(field);
+onValueChanged() {
+  let form = this.loginForm.form;
 
-      if (control && control.dirty && !control.valid) {
-        const messages = this.validationMessages[field];
-        for (const key in control.errors) {
-          this.formErrors[field] += messages[key] + ' ';
-        }
+  for (let field in this.formErrors) {
+    // clear previous error message (if any)
+    this.formErrors[field] = '';
+    const control = form.get(field);
+
+    if (control && control.dirty && !control.valid) {
+      const messages = this.validationMessages[field];
+      for (const key in control.errors) {
+        this.formErrors[field] += messages[key] + ' ';
       }
     }
   }
+}
 
-  formErrors = {
-    'rating': '',
-    'isClean': '',
-    'isHandicap': '',
-    'isFamily': '',
-    'comments': ''
-  };
+formErrors = {
+  'rating': '',
+  'isClean': '',
+  'isHandicap': '',
+  'isFamily': '',
+  'comments': ''
+};
 
-  validationMessages = {
-    'rating': {
-      'required': 'Movie title is required.',
-      'minlength': 'Movie title must be at least 2 characters long.',
-      'maxlength': 'Movie title cannot be more than 30 characters long.'
-    },
-    'isClean': {
-      'required': 'Distributor is required.',
-      'minlength': 'Distributor must be at least 2 characters long.',
-      'maxlength': 'Distributor cannot be more than 30 characters long.'
-    },
-    'isHandicap': {
-      'pattern': 'budget must be a number'
-    },
-    'isFamily': {
-      'pattern': 'Release date should be in the following format: YYYY-MM-DD'
-    },
-    'comments': {
-      'pattern': 'Release date should be in the following format: YYYY-MM-DD'
-    }
+validationMessages = {
+  'rating': {
+    'required': 'Movie title is required.',
+    'minlength': 'Movie title must be at least 2 characters long.',
+    'maxlength': 'Movie title cannot be more than 30 characters long.'
+  },
+  'isClean': {
+    'required': 'Distributor is required.',
+    'minlength': 'Distributor must be at least 2 characters long.',
+    'maxlength': 'Distributor cannot be more than 30 characters long.'
+  },
+  'isHandicap': {
+    'pattern': 'budget must be a number'
+  },
+  'isFamily': {
+    'pattern': 'Release date should be in the following format: YYYY-MM-DD'
+  },
+  'comments': {
+    'pattern': 'Release date should be in the following format: YYYY-MM-DD'
+  }
 
-  };
+};
 
 }
 

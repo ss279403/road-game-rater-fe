@@ -58,6 +58,20 @@ export class DataService {
             .map(this.extractData);
     }
 
+    seeUser(endpoint: string): Observable<object> {
+        let apiUrl = `${this.baseUrl}${endpoint}`;
+        return this.http.get(apiUrl, this.options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    logOff(endpoint: string): Observable<object> {
+        let apiUrl = `${this.baseUrl}${endpoint}`;
+        return this.http.delete(apiUrl, this.options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
 
     private extractData(res: Response) {
         let results = res.json();

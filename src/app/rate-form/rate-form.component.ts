@@ -97,16 +97,18 @@ export class RateFormComponent implements OnInit {
 
 
   saveRating(ratedForm: NgForm) {
-    this.dataService.addRecord("places/" + this.placeId + "/ratinginfo", ratedForm.value)
+     let ratedPlace = ratedForm.value;
+     ratedPlace["itemImage"] = this.imageUrl;
+      this.dataService.addRecord("places/" + this.placeId + "/ratinginfo", ratedForm.value)
       .subscribe(
-      ratedPlace => this.successMessage = "Record added successfully",
+      ratedForm => console.log(this.successMessage = "Record added successfully"),
       error => this.errorMessage = <any>error);
       console.log("rated place", this.ratedPlace)
-    //     this.dataService.addRecord("ratinginfo", ratedForm.value);
-    this.ratedPlace = {};
+    
     this.ratedForm.form.reset();
-    this.ngOnInit(); 
+  //  this.ngOnInit(); 
   }
+
 
   ngAfterViewChecked() {
     this.formChanged();
@@ -126,9 +128,9 @@ export class RateFormComponent implements OnInit {
     let imageUpload = image.target.files[0];
     console.log(imageUpload.name);
     console.log(image);
-    AWS.config.accessKeyId = 'AKIAJO2BVOJVTZPIFAPQ';
+    AWS.config.accessKeyId = 'AKIAJ7S6PDRHDUFS7U6Q';
 
-    AWS.config.secretAccessKey = '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';
+    AWS.config.secretAccessKey = 'fIR8pcwX8Pl1DP/l3InaN65FxSkoHzTM3LmixoaI';
     
     let bucket = new AWS.S3({ params: { Bucket: 'raterphotos' } });
     let params = { Bucket: 'raterphotos', Key: imageUpload.name, Body: imageUpload, ACL: "public-read" };
@@ -137,7 +139,7 @@ export class RateFormComponent implements OnInit {
       console.log("error: ", error);
       console.log("response: ", res["Location"]);
       this.buttonText = "Submit";
-    });
+    })
 }
 
 clicked() {

@@ -46,7 +46,7 @@
   </div>
 
   <br>
-  <div class="ratebutton" style="top:50%;text-align:center;">
+  <div *ngIf="user" class="ratebutton" style="top:50%;text-align:center;">
     <a class="btn btn-primary" [routerLink]="['/place/add/', place.id]">Rate this Bathroom</a>&nbsp;
   </div>
 
@@ -88,9 +88,9 @@
 
 
 <div *ngFor="let ratingInfo of place.ratingInfo">
-<span *ngIf="ratingInfo.itemImageUrl">
-    <a href={{ratingInfo.itemImageUrl}} target="_new">
-      <img [src]="ratingInfo.itemImageUrl" />
+<span *ngIf="ratingInfo.itemImage">
+    <a href={{ratingInfo.itemImage}} target="_new">
+      <img [src]="ratingInfo.itemImage" />
     </a>
   </span>
 </div>

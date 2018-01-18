@@ -1,5 +1,5 @@
 import 'rxjs/add/operator/switchMap';
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms';
@@ -21,30 +21,37 @@ export class PlaceComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
   places: any[];
-   @ViewChild('placesForm')
-    placesForm: NgForm;
+  @ViewChild('placesForm')
+  placesForm: NgForm;
 
-  
+  user: object;
 
   constructor(
     private dataService: DataService,
-     private route: ActivatedRoute,
-     private location: Location,
-     private router: Router,
-  ) {}
+    private route: ActivatedRoute,
+    private location: Location,
+    private router: Router,
+  ) { }
 
-  getPlaces(){
+  getPlaces() {
     this.dataService.getRecords("places")
-    .subscribe(
+      .subscribe(
       places => this.places = places,
-      error =>  this.errorMessage = <any>error);
-      console.log(this.places)
-    }
-
-  ngOnInit() {
-   this.getPlaces();
+      error => this.errorMessage = <any>error);
+    console.log(this.places)
   }
 
+  ngOnInit() {
+    this.getPlaces();
+    this.getUser();
+  }
+
+  getUser() {
+    this.dataService.seeUser("session/mine")
+      .subscribe(
+      user => this.user = user,
+      error => this.errorMessage = <any>error);
+  }
 
 
   addPlace(placesForm: NgForm) {
@@ -52,7 +59,7 @@ export class PlaceComponent implements OnInit {
       .subscribe(
       ratedPlace => {
         this.successMessage = "Record added successfully",
-        this.router.navigate(['/place/add', ratedPlace.id]);
+          this.router.navigate(['/place/add', ratedPlace.id]);
       },
       error => this.errorMessage = <any>error);
   }

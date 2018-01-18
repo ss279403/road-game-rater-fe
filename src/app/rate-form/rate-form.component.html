@@ -103,21 +103,13 @@
       </div>
     </div>
 
-    <div class="form-group">
-
-      <div class="col-sm-offset-2 col-sm-10">
-
+    <div class="form-group"> 
         <label for="itemImageUpload">Upload your picture</label>
         <input type="file" id="itemImageUpload" name="itemImage" (change)="imageUpload($event)">
         <p class="help-block">Upload an image of your experience.</p>
       </div>
 
-    </div>
-
-
-
-
-    <div class="form-group">
+     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
         <button [disabled]="!ratedForm.form.valid || buttonText == 'Loading...'" type="submit" class="btn btn-primary">{{ buttonText }}</button>
       </div>
