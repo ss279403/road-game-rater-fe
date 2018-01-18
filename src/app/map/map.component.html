@@ -48,10 +48,8 @@
         <th>Address</th>
         <th>Times Rated</th>
         <th>RoadGame Rate</th>
-
-        <th *ngIf=user>Rate This Place</th>
-
         <th>See Reviews</th>
+        <th *ngIf=user>Rate This Place</th>
       </tr>
     </thead>
     <tbody>
@@ -64,6 +62,7 @@
         <td class="type">{{deunderscore(place.types[0])}}</td>
         <td>{{place.name}}</td>
         <td>{{place.vicinity}}</td>
+
         <td>
           <div *ngFor="let ratedPlace of places">
             <div *ngIf="ratedPlace.name == place.name">
@@ -71,6 +70,7 @@
             </div>
           </div>
         </td>
+       
         <td>
           <div *ngFor="let ratedPlace of places">
             <div *ngIf="ratedPlace.name == place.name">
@@ -81,9 +81,6 @@
           </div>
         </td>
 
-        <td *ngIf=user class="text-center">
-          <button (click)="addPlace(placesForm)" class="btn btn-danger">Rate</button>
-        </td>
 
         <td>
           <div *ngFor="let ratedPlace of places">
@@ -92,6 +89,11 @@
             </div>
           </div>
         </td>
+
+        <td *ngIf=user class="text-center">
+          <button (click)="addPlace(placesForm)" class="btn btn-danger">Rate</button>
+        </td>
+
       </tr>
     </tbody>
   </table>
