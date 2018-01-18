@@ -128,9 +128,7 @@ export class RateFormComponent implements OnInit {
     let imageUpload = image.target.files[0];
     console.log(imageUpload.name);
     console.log(image);
-    AWS.config.accessKeyId = 'AKIAJ7S6asdfasdfasdfPDRHDUFS7U6Q';
 
-    AWS.config.secretAccessKey = 'fIR8pcwX8Pl1DP/l3InaN6dfgsdfgsdfgsdfgsdfgsdfgsdfg5FxSkoHzTM3LmixoaI';
     
     let bucket = new AWS.S3({ params: { Bucket: 'raterphotos' } });
     let params = { Bucket: 'raterphotos', Key: imageUpload.name, Body: imageUpload, ACL: "public-read" };
