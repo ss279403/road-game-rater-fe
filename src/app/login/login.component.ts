@@ -35,16 +35,27 @@ export class LoginComponent implements OnInit {
     // this.getUser();
   }
 
+  // .subscribe(
+  //   data => {
+  //       this.alertService.success('Registration successful', true);
+  //       this.router.navigate(['/login']);
+  //   },
+  //   error => {
+  //       this.alertService.error(error);
+  //       this.loading = false;
+  //   });
+
   sendLogin(loginForm: NgForm) {
+
     this.dataService.userLogin("session/mine", loginForm.value)
       .subscribe(
-      userLoggedIn => this.successMessage = "Record added successfully",
-      error => this.errorMessage = <any>error);
- //   this.userLoggedIn = {};
-   // this.loginForm.form.reset();
-    //   this.getUser();
-    //   this.ngOnInit();   
-  } 
+      userLoggedIn => {
+      this.successMessage = "Record added successfully"
+      this.reroute();
+      },
+      error => this.errorMessage = <any>error
+    );          
+  }
 
 
 getUser(){
@@ -56,7 +67,9 @@ getUser(){
 }
 
 
-
+reroute() {
+  return window.location.replace('/map/')
+}
 
 
 ngAfterViewChecked() {

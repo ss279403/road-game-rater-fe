@@ -33,7 +33,14 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li routerLinkActive="active">
-                            <a routerLink="/login">Your Reviews</a>
+                             
+
+
+                            <a [routerLink]="['/user/', userIn.id]">Your Reviews</a>
+
+
+
+
                         </li>
                         <li class="divider"></li>
                         <li routerLinkActive="active" (click)="signOut()"><a routerLink="/map">Sign out</a>
@@ -50,7 +57,7 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li routerLinkActive="active">
-                            <a routerLink="/aboutUs">Our Story</a>
+                                <a routerLink="/about-us">Our Story</a>
                         </li>
                         <li class="divider"></li>
                         <li routerLinkActive="active">

@@ -1,0 +1,28 @@
+
+<br>
+<br>
+
+
+<div *ngIf="user">
+
+  {{user.id}}
+  <br>
+{{user.firstName}}
+<br>
+{{user.lastName}}
+<br>
+{{user.username}}
+<br>
+{{user.}}
+
+
+  <div *ngFor="let userPlaces of user.places">
+
+  <li>  {{userPlaces}} </li>
+    {{userPlaces.id}}
+    <li>    {{userPlaces.name}} </li>
+    <li>    {{userPlaces.address}} </li>
+  </div>
+  
+  
+ </div>

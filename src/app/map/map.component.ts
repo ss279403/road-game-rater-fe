@@ -142,10 +142,11 @@ export class MapComponent implements OnInit {
     this.dataService.addRecord("places", placesForm.value)
       .subscribe(
         ratedPlace => {
+          this.router.navigate(['/place/add', ratedPlace.id]),
           this.successMessage = "Record added successfully"
-          this.router.navigate(['/place/add', ratedPlace.id])
         },
         error => this.errorMessage = <any>error
+        
       );
   }
 

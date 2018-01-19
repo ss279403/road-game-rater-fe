@@ -5,7 +5,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { fadeInAnimation } from '../animations/fade-in.animation';
 import * as AWS from 'aws-sdk';
-
+import { Router } from '@angular/router';
 import { DataService } from '../data.service'
 
 @Component({
@@ -43,7 +43,8 @@ export class RateFormComponent implements OnInit {
   constructor(
     private dataService: DataService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) { }
 
 
@@ -105,7 +106,8 @@ export class RateFormComponent implements OnInit {
       error => this.errorMessage = <any>error);
       console.log("rated place", this.ratedPlace)
     
-    this.ratedForm.form.reset();
+      this.router.navigate(['/place', this.placeId]);
+      
   //  this.ngOnInit(); 
   }
 

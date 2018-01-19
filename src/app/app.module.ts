@@ -21,6 +21,9 @@ import { SingleplaceComponent } from './singleplace/singleplace.component';
 import { RatingModule } from 'ngx-bootstrap/rating';
 import { CreateuserComponent } from './createuser/createuser.component';
 import { LoginComponent } from './login/login.component';
+import { StatusMessageComponent } from './status-message/status-message.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { UserViewComponent } from './user-view/user-view.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { LoginComponent } from './login/login.component';
     NavigationComponent,
     SingleplaceComponent,
     CreateuserComponent,
-    LoginComponent ],
+    LoginComponent,
+    StatusMessageComponent,
+    AboutUsComponent,
+    UserViewComponent ],
   imports: [
     BrowserModule,
     RatingModule.forRoot(),

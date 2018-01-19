@@ -6,6 +6,8 @@ import { SingleplaceComponent } from '../singleplace/singleplace.component';
 import { RateFormComponent } from '../rate-form/rate-form.component';
 import { CreateuserComponent } from '../createuser/createuser.component';
 import { LoginComponent } from '../login/login.component';
+import { AboutUsComponent } from '../about-us/about-us.component';
+import { UserViewComponent } from '../user-view/user-view.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/map', pathMatch: 'full' },
@@ -15,7 +17,8 @@ const routes: Routes = [
   { path: 'place/:id', component: SingleplaceComponent },
   { path: 'newUser', component: CreateuserComponent },
   { path: 'login', component: LoginComponent },
-
+  { path: 'about-us', component: AboutUsComponent },
+  { path: 'user/:id', component: UserViewComponent },
 
 ];
 

@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { fadeInAnimation } from '../animations/fade-in.animation';
-
+import { Router } from '@angular/router';
 import { DataService } from '../data.service'
 
 @Component({
@@ -21,24 +21,32 @@ export class CreateuserComponent implements OnInit {
   successMessage: string;
   errorMessage: string;
 
+  userLoggedIn: object;
+
 
   constructor(
     private dataService: DataService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) { }
 
   ngOnInit() {
   }
 
+
   saveUser(signUpForm: NgForm) {
     this.dataService.addRecord("user/create", signUpForm.value)
       .subscribe(
-      signUpForm => this.successMessage = "Record added successfully",
-      error => this.errorMessage = <any>error);
-      console.log("rated place", this.signUpForm)
-    this.signUpForm.form.reset();
-    this.ngOnInit(); 
+      signUpForm => {
+           this.router.navigate(['/login/']);
+           this.successMessage = "You are registered, please sign in.";
+           
+        // window.location.replace('/login/')
+      //    this.router.navigate(['/login/'])
+   //     this.successMessage = "You are registered, please sign in."
+      },
+    error => this.errorMessage = "This username already exists, please pick a new one");
   }
 
   ngAfterViewChecked() {
@@ -71,11 +79,10 @@ export class CreateuserComponent implements OnInit {
   }
 
   formErrors = {
-    'rating': '',
-    'isClean': '',
-    'isHandicap': '',
-    'isFamily': '',
-    'comments': ''
+    'firstName': '',
+    'lastName': '',
+    'username': '',
+    'password': ''
   };
 
   validationMessages = {
