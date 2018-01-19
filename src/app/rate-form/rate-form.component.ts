@@ -39,6 +39,8 @@ export class RateFormComponent implements OnInit {
 
   buttonText = "Submit"
 
+  user: any[];
+
 
   constructor(
     private dataService: DataService,
@@ -50,6 +52,7 @@ export class RateFormComponent implements OnInit {
 
   ngOnInit() {
     //   this.getPlaces();
+    this.getUser();
     this.getRatings();
     this.route.params
       .subscribe((params: Params) => {
@@ -76,6 +79,15 @@ export class RateFormComponent implements OnInit {
     console.log(this.ratingInfo)
   }
 
+  getUser() {
+    this.dataService.getRecords("user")
+      .subscribe(
+      user => this.user = user,
+      error => this.errorMessage = <any>error);
+    console.log("user info", this.user)
+  }
+
+
   getRatingsbyPlace() {
     this.dataService.getRecords("ratinginfo")
     .subscribe(ratingInfoTest => {
@@ -99,14 +111,16 @@ export class RateFormComponent implements OnInit {
 
   saveRating(ratedForm: NgForm) {
      let ratedPlace = ratedForm.value;
-     ratedPlace["itemImage"] = this.imageUrl;
+   //  ratedPlace["itemImage"] = this.imageUrl;
       this.dataService.addRecord("places/" + this.placeId + "/ratinginfo", ratedForm.value)
       .subscribe(
       ratedForm => console.log(this.successMessage = "Record added successfully"),
       error => this.errorMessage = <any>error);
-      console.log("rated place", this.ratedPlace)
-    
+  //    console.log("rated place", this.ratedPlace)
+
       this.router.navigate(['/place', this.placeId]);
+    
+  
       
   //  this.ngOnInit(); 
   }
