@@ -23,9 +23,8 @@
 
 
 <div *ngFor="let place of user.place">
-  {{place.id}} {{placeId}}
-  <div *ngIf="place.id == placeId" class="alert-success">
-      <h1>Looks like you've already rated this bathroom. Submitting the form again will not create a rating.</h1>
+   <div *ngIf="place.id == placeId" class="alert-success">
+      <h1>You've already rated this bathroom, thanks for being GREAT!</h1>
 </div>
 </div>
 
