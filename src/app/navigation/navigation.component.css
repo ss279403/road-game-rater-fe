@@ -61,3 +61,10 @@ body{
   .dropdown:hover .dropdown-menu {
     display: block;
   }
+
+ .navbar-brand {
+    margin: -20px;
+    position: relative;
+  }
+
+

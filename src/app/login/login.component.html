@@ -1,33 +1,59 @@
-<br>
-<br>
-<br>
 
-<div class="alert-success">
-  <p>Congratulations, you are registered! Please Login</p>
+<section @fadeInAnimation>
+    <br>
+    <br>
+
+    <div class="col-sm-10">
+  
+    <ol class="breadcrumb">
+        <li><a routerLink="/map">Map</a></li>
+        <li><a routerLink="/newUser">Create Account</a></li>
+        <li class="active">Login</li>
+    </ol>
+
+  <div class="col-sm-10" style="text-align:center;">
+    <div class="alert-success">
+      <h1>Wecolome to our site, you are registered!&nbsp;&nbsp;Please Login</h1>
+    </div>
   </div>
 
-<form novalidate (ngSubmit)="sendLogin(loginForm)" #loginForm="ngForm" class="form-horizontal">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 
+  <form novalidate (ngSubmit)="sendLogin(loginForm)" #loginForm="ngForm" class="form-horizontal">
 
 
     <div class="form-group">
-        <label for="username" class="col-sm-3 control-label">User Name
-        <input [ngModel]="user?.username" ngModel #username="ngModel" type="text" class="form-control" id="username" name="username" required>
-      </label>
-        
+      <label for="username" class="col-sm-2 col-form-label">User Name</label>
+      <div class="col-sm-6">
+        <input [ngModel]="user?.username" ngModel #username="ngModel" type="text" class="form-control" id="userName" name="username"
+          required>
+      </div>
     </div>
+
+    <br>
 
     <div class="form-group">
-        <label for="password" class="col-sm-3 control-label">Password
-        <input [ngModel]="user?.password" ngModel #password="ngModel" type="text" class="form-control" id="password" name="password" required>
-      </label>
-        
+      <label for="password" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-6">
+        <input [ngModel]="user?.password" ngModel #password="ngModel" type="password" class="form-control" id="pword" name="password"
+          required>
+      </div>
     </div>
 
+    <br>
 
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
         <button [disabled]="!loginForm.form.valid" type="submit" class="btn btn-primary">Login</button>
       </div>
     </div>
-</form>
+  </form>
+
+</div>
+</section>

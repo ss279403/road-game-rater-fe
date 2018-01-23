@@ -10,7 +10,8 @@ import { DataService } from '../data.service'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  animations: [fadeInAnimation]
 })
 export class LoginComponent implements OnInit {
 
@@ -35,18 +36,8 @@ export class LoginComponent implements OnInit {
     // this.getUser();
   }
 
-  // .subscribe(
-  //   data => {
-  //       this.alertService.success('Registration successful', true);
-  //       this.router.navigate(['/login']);
-  //   },
-  //   error => {
-  //       this.alertService.error(error);
-  //       this.loading = false;
-  //   });
 
   sendLogin(loginForm: NgForm) {
-
     this.dataService.userLogin("session/mine", loginForm.value)
       .subscribe(
       userLoggedIn => {

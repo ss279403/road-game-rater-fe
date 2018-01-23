@@ -4,11 +4,13 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { fadeInAnimation } from '../animations/fade-in.animation';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css']
+  styleUrls: ['./navigation.component.css'],
+  animations: [fadeInAnimation]
 })
 export class NavigationComponent implements OnInit {
 
@@ -69,74 +71,74 @@ export class NavigationComponent implements OnInit {
             this.successMessage = "Record added successfully"
             this.refresh();
             },
-            error => this.errorMessage = <any>error
+            error => alert("Sorry, Username or Password do not match our records")
           );          
         }
 
-  
+ 
 
   refresh() {
     window.location.reload();
   }
 
-  ngAfterViewChecked() {
-    this.formChanged();
-  }
+  // ngAfterViewChecked() {
+  //   this.formChanged();
+  // }
 
-  formChanged() {
-    this.loginForm = this.currentForm;
-    this.loginForm.valueChanges
-      .subscribe(
-      data => this.onValueChanged()
-      );
-  }
+  // formChanged() {
+  //   this.loginForm = this.currentForm;
+  //   this.loginForm.valueChanges
+  //     .subscribe(
+  //     data => this.onValueChanged()
+  //     );
+  // }
 
-  onValueChanged() {
-    let form = this.loginForm.form;
+  // onValueChanged() {
+  //   let form = this.loginForm.form;
 
-    for (let field in this.formErrors) {
-      // clear previous error message (if any)
-      this.formErrors[field] = '';
-      const control = form.get(field);
+  //   for (let field in this.formErrors) {
+  //     // clear previous error message (if any)
+  //     this.formErrors[field] = '';
+  //     const control = form.get(field);
 
-      if (control && control.dirty && !control.valid) {
-        const messages = this.validationMessages[field];
-        for (const key in control.errors) {
-          this.formErrors[field] += messages[key] + ' ';
-        }
-      }
-    }
-  }
+  //     if (control && control.dirty && !control.valid) {
+  //       const messages = this.validationMessages[field];
+  //       for (const key in control.errors) {
+  //         this.formErrors[field] += messages[key] + ' ';
+  //       }
+  //     }
+  //   }
+  // }
 
-  formErrors = {
-    'rating': '',
-    'isClean': '',
-    'isHandicap': '',
-    'isFamily': '',
-    'comments': ''
-  };
+  // formErrors = {
+  //   'rating': '',
+  //   'isClean': '',
+  //   'isHandicap': '',
+  //   'isFamily': '',
+  //   'comments': ''
+  // };
 
-  validationMessages = {
-    'rating': {
-      'required': 'Movie title is required.',
-      'minlength': 'Movie title must be at least 2 characters long.',
-      'maxlength': 'Movie title cannot be more than 30 characters long.'
-    },
-    'isClean': {
-      'required': 'Distributor is required.',
-      'minlength': 'Distributor must be at least 2 characters long.',
-      'maxlength': 'Distributor cannot be more than 30 characters long.'
-    },
-    'isHandicap': {
-      'pattern': 'budget must be a number'
-    },
-    'isFamily': {
-      'pattern': 'Release date should be in the following format: YYYY-MM-DD'
-    },
-    'comments': {
-      'pattern': 'Release date should be in the following format: YYYY-MM-DD'
-    }
+  // validationMessages = {
+  //   'rating': {
+  //     'required': 'Movie title is required.',
+  //     'minlength': 'Movie title must be at least 2 characters long.',
+  //     'maxlength': 'Movie title cannot be more than 30 characters long.'
+  //   },
+  //   'isClean': {
+  //     'required': 'Distributor is required.',
+  //     'minlength': 'Distributor must be at least 2 characters long.',
+  //     'maxlength': 'Distributor cannot be more than 30 characters long.'
+  //   },
+  //   'isHandicap': {
+  //     'pattern': 'budget must be a number'
+  //   },
+  //   'isFamily': {
+  //     'pattern': 'Release date should be in the following format: YYYY-MM-DD'
+  //   },
+  //   'comments': {
+  //     'pattern': 'Release date should be in the following format: YYYY-MM-DD'
+  //   }
 
-  };
+  // };
 
 }

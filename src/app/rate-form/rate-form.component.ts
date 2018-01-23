@@ -66,7 +66,6 @@ export class RateFormComponent implements OnInit {
       .subscribe(
       places => this.places = places,
       error => this.errorMessage = <any>error);
-    console.log(this.places)
   }
 
   getRatings() {
@@ -76,7 +75,6 @@ export class RateFormComponent implements OnInit {
         //   this.getRecordForEdit();
       },
       error => this.errorMessage = <any>error);
-    console.log(this.ratingInfo)
   }
 
   getUser() {
@@ -84,7 +82,6 @@ export class RateFormComponent implements OnInit {
       .subscribe(
       user => this.user = user,
       error => this.errorMessage = <any>error);
-    console.log("user info", this.user)
   }
 
 
@@ -95,7 +92,6 @@ export class RateFormComponent implements OnInit {
       //   this.getRecordForEdit();
     },
     error => this.errorMessage = <any>error);
-  console.log(this.ratingInfo)
   }
 
   getRecordForEdit() {
@@ -114,16 +110,16 @@ export class RateFormComponent implements OnInit {
    //  ratedPlace["itemImage"] = this.imageUrl;
       this.dataService.addRecord("places/" + this.placeId + "/ratinginfo", ratedForm.value)
       .subscribe(
-      ratedForm => console.log(this.successMessage = "Record added successfully"),
+      ratedForm => {
+        this.successMessage = "Record added successfully"
+        window.location.replace('/place/' + this.placeId);
+      },
       error => this.errorMessage = <any>error);
   //    console.log("rated place", this.ratedPlace)
 
-      this.router.navigate(['/place', this.placeId]);
-    
-  
-      
-  //  this.ngOnInit(); 
+  //   this.router.navigate(['/place', this.placeId]);     
   }
+
 
 
   ngAfterViewChecked() {

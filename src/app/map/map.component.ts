@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { fadeInAnimation } from '../animations/fade-in.animation';
 import { NgStyle } from '@angular/common';
+import { Transform } from 'stream';
 
 @Component({
   selector: 'app-map',
@@ -28,8 +29,10 @@ export class MapComponent implements OnInit {
 
   places: any[];
 
+  goodRatings: any[];
+  badRatings: any[];
 
-  // ratedPlace: object;
+  //  ratedPlaces: any;
 
   @ViewChild('placesForm')
   placesForm: NgForm;
@@ -56,18 +59,18 @@ export class MapComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getPlaces();
     this.setCurrentPosition();
     this.populateMap();
-    this.getPlaces();
     this.getUser();
   }
 
-  getUser(){
+  getUser() {
     this.dataService.seeUser("session/mine")
-    .subscribe(
+      .subscribe(
       user => this.user = user,
-      error =>  this.errorMessage = <any>error);
-    }
+      error => this.errorMessage = <any>error);
+  }
 
   private populateMap() {
 
@@ -141,12 +144,12 @@ export class MapComponent implements OnInit {
   addPlace(placesForm: NgForm) {
     this.dataService.addRecord("places", placesForm.value)
       .subscribe(
-        ratedPlace => {
-          this.router.navigate(['/place/add', ratedPlace.id]),
+      ratedPlace => {
+        this.router.navigate(['/place/add', ratedPlace.id]),
           this.successMessage = "Record added successfully"
-        },
-        error => this.errorMessage = <any>error
-        
+      },
+      error => this.errorMessage = <any>error
+
       );
   }
 
@@ -154,16 +157,30 @@ export class MapComponent implements OnInit {
   getPlaces() {
     this.dataService.getRecords("places")
       .subscribe(
-        places => this.places = places,
-        error => this.errorMessage = <any>error
+      places => {
+        this.places = places,
+          console.log(this.places);
+      },
+      error => this.errorMessage = <any>error
       );
-    console.log("places", this.places);
   }
 
-  markerIconUrl() {
-    if (this.places)
-    return ('../../assets/images/goldensmall.png')
+
+  markerIconUrl(place) {
+
+
+    for (let ratedPlace of this.places) {
+      console.log(ratedPlace.googleId + "eric" + place.place_id + "eric" + ratedPlace.averageRate)
+      if (ratedPlace.googleId == place.place_id && ratedPlace.averageRate > 3) {
+        return ('../../assets/images/goldensmall.png');
+      } else if (ratedPlace.googleId == place.place_id && ratedPlace.averageRate <= 3) {
+        return ('../../assets/images/porto.png');
+      }
+    }
+
   }
+
+
 
   deunderscore(str: string): string {
     return str.replace(/_/g, ' ');

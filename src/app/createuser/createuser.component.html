@@ -1,45 +1,65 @@
-<br>
-<br>
-<br>
+
+<section @fadeInAnimation>
+    <br>
+    <br>
+  
+    <ol class="breadcrumb">
+        <li><a routerLink="/map">Map</a></li>
+        <li class="active">Create Account</li>
+    </ol>
 
 <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
 
 <form novalidate (ngSubmit)="saveUser(signUpForm)" #signUpForm="ngForm" class="form-horizontal">
 
     <div class="form-group">
-        <label for="firstName" class="col-sm-3 control-label">First Name
+        <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
+        <div class="col-sm-6">
         <input [ngModel]="user?.firstName" ngModel #firstName="ngModel" type="text" class="form-control" id="firstName" name="firstName" required>
-      </label>
+        </div>
         <span *ngIf="formErrors.firstName" class="text-danger"> {{ formErrors.firstName }} </span>
     </div>
 
-    <hr>
+    <br>
 
     <div class="form-group">
-        <label for="lastName" class="col-sm-3 control-label">Last Name
+        <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
+        <div class="col-sm-6">
         <input [ngModel]="user?.lastName" ngModel #lastName="ngModel" type="text" class="form-control" id="lastName" name="lastName" required>
-      </label>
+        </div>
         <span *ngIf="formErrors.lastName" class="text-danger"> {{ formErrors.lastName }} </span>
     </div>
 
-    <hr>
+    <br>
 
     <div class="form-group">
-        <label for="username" class="col-sm-3 control-label">User Name
-        <input [ngModel]="user?.username" ngModel #username="ngModel" type="text" class="form-control" id="username" name="username" required>
-      </label>
+        <label for="username" class="col-sm-2 col-form-label">User Name</label>
+        <div class="col-sm-6">
+        <input [ngModel]="user?.username" ngModel #username="ngModel" type="text" class="form-control" id="userName" name="username" required>
+        </div>
         <span *ngIf="formErrors.username" class="text-danger"> {{ formErrors.username }} </span>
     </div>
 
-    <hr>
+    <br>
 
     <div class="form-group">
-        <label for="password" class="col-sm-3 control-label">Password
-        <input [ngModel]="user?.password" ngModel #password="ngModel" type="text" class="form-control" id="password" name="password" required>
-      </label>
+        <label for="password" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-6">
+        <input [ngModel]="user?.password" ngModel #password="ngModel" type="password" class="form-control" id="pword" name="password" required>
+        </div>
         <span *ngIf="formErrors.password" class="text-danger"> {{ formErrors.password }} </span>
     </div>
 
+    <br>
+
+    <div class="form-group">
+        <label for="confirmPassword" class="col-sm-2 col-form-label">Confirm Password</label>
+        <div class="col-sm-6">
+        <input [ngModel]="user?.confirmPassword" ngModel #confirmPassword="ngModel" type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+        </div>
+    </div>
+
+    <br>
 
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
@@ -47,5 +67,7 @@
       </div>
     </div>
 </form>
+
+</section>
 
 

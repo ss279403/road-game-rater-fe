@@ -1,0 +1,36 @@
+<section @fadeInAnimation>
+  <br>
+  <br>
+
+  <ol class="breadcrumb">
+      <li><a routerLink="/map">Map</a></li>
+      <li class="active">Send us your feedback</li>
+  </ol>
+
+    <div class="form-group">
+    
+      <label for="comments" class="col-sm-2 control-label"></label>
+    
+      <div class="col-sm-9">
+    
+        <span class="input-group-addon">Feedback</span>
+    
+        <textarea [(ngModel)]="comments" type="text" id="comments" name="comments"
+    
+          rows="1" style="width:100%; height:200px;"></textarea>
+    
+        
+    
+        <button class="btn btn-primary" (click)="openUserMailClient()">
+    
+          <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  Email This
+    
+        </button>
+    
+      </div>
+    
+      
+    
+    </div>
+    
+    </section>

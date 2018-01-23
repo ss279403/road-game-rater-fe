@@ -1,3 +1,10 @@
+<section @fadeInAnimation>
+<br>
+<div class="directions">
+  <h1>Welcome to RoadGame Rater</h1>
+  <h4>An app to help you find the best places to do your business. Enter an address and find bathrooms nearby to see their reviews.</h4>
+  <h4>Create an account to add your own ratings and save your favorite drop off locations.</h4>
+</div>
 <br>
 <br>
 <h1>Enter Your Location</h1>
@@ -23,16 +30,24 @@
 </div>
 
 <div #myMap></div>
+
 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+    
   <agm-marker label="Current Location" [latitude]="lat" [longitude]="lng"></agm-marker>
-  <agm-marker class="markers" [iconUrl]="markerIconUrl()" *ngFor="let place of nearByPlaces" [latitude]="place.geometry.location.lat()"
-    [longitude]="place.geometry.location.lng()">
-    <agm-info-window>{{place.name}}
-      <br>
-      <a href="https://maps.google.com/?q={{place.vicinity}}">Get Directions</a>
-    </agm-info-window>
-  </agm-marker>
+
+  
+
+      <agm-marker class="markers" [iconUrl]="markerIconUrl(place)" *ngFor="let place of nearByPlaces" [latitude]="place.geometry.location.lat()"
+        [longitude]="place.geometry.location.lng()">
+        <agm-info-window>{{place.name}} 
+          <br>
+          <a href="https://maps.google.com/?q={{place.vicinity}}">Get Directions</a>
+        </agm-info-window>
+      </agm-marker>
+ 
+
 </agm-map>
+
 
 
 <br>
@@ -70,12 +85,13 @@
             </div>
           </div>
         </td>
-       
+
         <td>
           <div *ngFor="let ratedPlace of places">
             <div *ngIf="ratedPlace.name == place.name">
               <div class="star-ratings-sprite">
                 <div [ngStyle]="{'width': ratedPlace.averageRate/5*100 + '%'}" class="star-ratings-sprite-rating"></div>
+                {{ratedPlace.averageRate}}
               </div>
             </div>
           </div>
@@ -91,7 +107,7 @@
         </td>
 
         <td *ngIf=user class="text-center">
-          <button (click)="addPlace(placesForm)"  class="btn btn-danger">Rate</button>
+          <button (click)="addPlace(placesForm)" class="btn btn-danger">Rate</button>
         </td>
 
       </tr>
@@ -99,3 +115,4 @@
   </table>
 
 </div>
+

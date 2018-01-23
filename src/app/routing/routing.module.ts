@@ -8,6 +8,7 @@ import { CreateuserComponent } from '../createuser/createuser.component';
 import { LoginComponent } from '../login/login.component';
 import { AboutUsComponent } from '../about-us/about-us.component';
 import { UserViewComponent } from '../user-view/user-view.component';
+import { FeedbackComponent } from '../feedback/feedback.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/map', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'user/:id', component: UserViewComponent },
+  { path: 'feedback', component: FeedbackComponent},
 
 ];
 

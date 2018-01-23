@@ -24,6 +24,8 @@ import { LoginComponent } from './login/login.component';
 import { StatusMessageComponent } from './status-message/status-message.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { UserViewComponent } from './user-view/user-view.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { UserViewComponent } from './user-view/user-view.component';
     LoginComponent,
     StatusMessageComponent,
     AboutUsComponent,
-    UserViewComponent ],
+    UserViewComponent,
+    FeedbackComponent,
+    FooterComponent ],
   imports: [
     BrowserModule,
     RatingModule.forRoot(),

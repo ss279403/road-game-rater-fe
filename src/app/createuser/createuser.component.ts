@@ -10,7 +10,8 @@ import { DataService } from '../data.service'
 @Component({
   selector: 'app-createuser',
   templateUrl: './createuser.component.html',
-  styleUrls: ['./createuser.component.css']
+  styleUrls: ['./createuser.component.css'],
+  animations: [fadeInAnimation]
 })
 export class CreateuserComponent implements OnInit {
 
@@ -22,7 +23,6 @@ export class CreateuserComponent implements OnInit {
   errorMessage: string;
 
   userLoggedIn: object;
-
 
   constructor(
     private dataService: DataService,
@@ -36,6 +36,10 @@ export class CreateuserComponent implements OnInit {
 
 
   saveUser(signUpForm: NgForm) {
+    if(signUpForm.value.password !== signUpForm.value.confirmPassword) {
+      alert("Passwords do not match");
+      this.ngOnInit();
+    } else {
     this.dataService.addRecord("user/create", signUpForm.value)
       .subscribe(
       signUpForm => {
@@ -48,6 +52,7 @@ export class CreateuserComponent implements OnInit {
       },
     error => this.errorMessage = "This username already exists, please pick a new one");
   }
+}
 
   ngAfterViewChecked() {
     this.formChanged();
@@ -60,6 +65,7 @@ export class CreateuserComponent implements OnInit {
       data => this.onValueChanged()
       );
   }
+
 
   onValueChanged() {
     let form = this.signUpForm.form;

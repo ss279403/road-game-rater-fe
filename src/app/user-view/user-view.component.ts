@@ -10,11 +10,12 @@ import { DataService } from '../data.service'
 @Component({
   selector: 'app-user-view',
   templateUrl: './user-view.component.html',
-  styleUrls: ['./user-view.component.css']
+  styleUrls: ['./user-view.component.css'],
+  animations: [fadeInAnimation]
 })
 export class UserViewComponent implements OnInit {
 
-
+userData: object;
 user: object;
 errorMessage: string;
 
@@ -26,12 +27,20 @@ errorMessage: string;
 
   ngOnInit() {
     this.getUser();
+    this.getUserData();
   }
 
   getUser(){
     this.route.params
       .switchMap((params: Params) => this.dataService.getRecord("user", +params['id']))
       .subscribe(user => this.user = user);
+  }
+
+  getUserData() {
+    this.dataService.getRecords("user")
+      .subscribe(
+      userData => this.userData = userData,
+      error => this.errorMessage = <any>error);
   }
 
 }

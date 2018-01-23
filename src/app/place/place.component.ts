@@ -38,7 +38,6 @@ export class PlaceComponent implements OnInit {
       .subscribe(
       places => this.places = places,
       error => this.errorMessage = <any>error);
-    console.log(this.places)
   }
 
   ngOnInit() {

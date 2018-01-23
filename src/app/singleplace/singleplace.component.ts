@@ -45,6 +45,7 @@ export class SingleplaceComponent implements OnInit {
   ngOnInit() {
     this.getRecordForEdit();
     this.getUser();
+    
   }
 
   getUser() {
