@@ -118,3 +118,36 @@ text-rendering: optimizeLegibility;
       height: 21px;
       display:block;
     }
+
+    .page {
+        background-color: white;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    #itemImageUpload {
+        margin: 5px;
+    }
+
+    progress::-webkit-progress-value {
+        color: #0063a6;
+        background-color: #0063a6;;
+      }
+
+    progress[value] {
+        color: #0063a6;
+    }
+
+    progress {
+        color: #0063a6;
+        font-size: .6em;
+        line-height: 1.5em;
+        text-indent: .5em;
+        width: 15em;
+        height: 1.8em;
+        border: 1px solid #0063a6;
+        background: #fff;
+        border-radius: 3px;
+}

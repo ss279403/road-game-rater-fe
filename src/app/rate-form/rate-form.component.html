@@ -3,149 +3,169 @@
 
 
   <ol class="breadcrumb">
-      <li><a routerLink="/map">Map</a></li>
-      <li><a routerLink="/place">Top Rated Locations</a></li>
-      <li class="active">Rate Bathroom</li>
+    <li>
+      <a routerLink="/map">Map</a>
+    </li>
+    <li>
+      <a routerLink="/place">Top Rated Locations</a>
+    </li>
+    <li class="active">Rate Bathroom</li>
   </ol>
 
+  <div class="page">
 
-  <div *ngIf="ratedPlace">
-    <div class="name" id="name">
-      {{ratedPlace.name}}
-    </div>
-  </div>
-
-  <br>
-  <br>
-
-
-
-
-
-
-  <div *ngIf="user">
-    <div *ngFor="let place of user.place">
-      <div *ngIf="place.id == placeId" class="alert-success">
-        <h1>You've already rated this bathroom, thanks for being GREAT!</h1>
+    <div *ngIf="ratedPlace">
+      <div class="name" id="name">
+        {{ratedPlace.name}}
       </div>
     </div>
-  </div>
+
+    <br>
+    <br>
 
 
 
 
 
-  <form novalidate (ngSubmit)="saveRating(ratedForm)" #ratedForm="ngForm" class="form-horizontal">
 
-
-
-    <div class="form-group">
-      <label for="rating" class="col-sm-3 control-label">Your Rating of Bathroom</label>
-      <rating [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" [max]="5" [customTemplate]="tt" id="rating" name="rating"
-        [readonly]="isReadonly" required></rating>
-      <ng-template #tt let-i="index" let-v="value">
-        <div class="btn btn-{{i < v ? 'warning' : 'default'}}">
-          {{i
-          < v ? '&#9733;' : '&#9734;'}} </div>
-      </ng-template>
-      <span *ngIf="formErrors.rating" class="text-danger"> {{ formErrors.rating }} </span>
-      </div>
-
-      <hr>
-
-      <div class="form-group">
-        <label for="isClean" class="col-sm-3 control-label">Was it Clean?</label>
-        <div class="col-sm-6">
-          <label class="radioButton">Yes
-            <input [ngModel]="ratingInfo?.isClean" ngModel #isClean="ngModel" chekced="checked" type="radio" value="true" class="form-control"
-              id="clean" name="isClean" required>
-            <span class="checkmark"></span>
-          </label>
-          <label class="radioButton">No
-            <input [ngModel]="ratingInfo?.isClean" ngModel #isClean="ngModel" chekced="checked" type="radio" value="false" class="form-control"
-              id="dirty" name="isClean" required>
-            <span class="checkmark"></span>
-          </label>
-          <span *ngIf="formErrors.isClean" class="text-danger"> {{ formErrors.isClean }} </span>
+    <div *ngIf="user">
+      <div *ngFor="let place of user.place">
+        <div *ngIf="place.id == placeId" class="alert-success">
+          <h1>You've already rated this bathroom, thanks for being GREAT!</h1>
         </div>
       </div>
+    </div>
 
-      <hr>
+
+
+
+
+    <form novalidate (ngSubmit)="saveRating(ratedForm)" #ratedForm="ngForm" class="form-horizontal">
+
+
 
       <div class="form-group">
-        <label for="isHandicap" class="col-sm-3 control-label">Handicap Accessible?</label>
-        <div class="col-sm-6">
-          <label class="radioButton">Yes
-            <input [ngModel]="ratingInfo?.isHandicap" ngModel #isHandicap="ngModel" chekced="checked" type="radio" value="true" class="form-control"
-              id="handicap" name="isHandicap" required>
-            <span class="checkmark"></span>
-          </label>
-          <label class="radioButton">No
-            <input [ngModel]="ratingInfo?.isHandicap" ngModel #isHandicap="ngModel" chekced="checked" type="radio" value="false" class="form-control"
-              id="nothandicap" name="isHandicap" required>
-            <span class="checkmark"></span>
-          </label>
-          <span *ngIf="formErrors.isHandicap" class="text-danger">{{ formErrors.isHandicap }}</span>
+        <label for="rating" class="col-sm-3 control-label">Your Rating of Bathroom</label>
+        <rating [ngModel]="ratingInfo?.rating" ngModel #rating="ngModel" [max]="5" [customTemplate]="tt" id="rating" name="rating"
+          [readonly]="isReadonly" required></rating>
+        <ng-template #tt let-i="index" let-v="value">
+          <div class="btn btn-{{i < v ? 'warning' : 'default'}}">
+            {{i
+            < v ? '&#9733;' : '&#9734;'}} </div>
+        </ng-template>
+        <span *ngIf="formErrors.rating" class="text-danger"> {{ formErrors.rating }} </span>
         </div>
-      </div>
 
-      <hr>
+        <hr>
 
-
-
-
-      <div class="form-group">
-        <label for="isFamily" class="col-sm-3 control-label">Was there a Family Restroom?</label>
-        <div class="col-sm-6">
-          <label class="radioButton">Yes
-            <input [ngModel]="ratingInfo?.isFamily" ngModel #isFamily="ngModel" chekced="checked" type="radio" value="true" class="form-control"
-              id="family" name="isFamily" (click)="clicked()" required>
-            <span class="checkmark"></span>
-          </label>
-          <label class="radioButton">No
-            <input [ngModel]="ratingInfo?.isFamily" ngModel #isFamily="ngModel" chekced="checked" type="radio" value="false" class="form-control"
-              id="notfamily" name="isFamily" required>
-            <span class="checkmark"></span>
-          </label>
-          <span *ngIf="formErrors.isFamily" class="text-danger">
-            {{ formErrors.isFamily }}
-          </span>
+        <div class="form-group">
+          <label for="isClean" class="col-sm-3 control-label">Was it Clean?</label>
+          <div class="col-sm-6">
+            <label class="radioButton">Yes
+              <input [ngModel]="ratingInfo?.isClean" ngModel #isClean="ngModel" chekced="checked" type="radio" value="true" class="form-control"
+                id="clean" name="isClean" required>
+              <span class="checkmark"></span>
+            </label>
+            <label class="radioButton">No
+              <input [ngModel]="ratingInfo?.isClean" ngModel #isClean="ngModel" chekced="checked" type="radio" value="false" class="form-control"
+                id="dirty" name="isClean" required>
+              <span class="checkmark"></span>
+            </label>
+            <span *ngIf="formErrors.isClean" class="text-danger"> {{ formErrors.isClean }} </span>
+          </div>
         </div>
-      </div>
 
+        <hr>
 
-
-      <div class="form-group">
-        <label for="comments" class="col-sm-2 control-label"></label>
-        <div class="col-sm-9">
-          <span class="input-group-addon">Comments</span>
-          <textarea [ngModel]="ratingInfo?.comments" ngModel #comments="ngModel" type="text" class="form-control" id="comments" name="comments"
-            rows="1" style="width:100%; height:200px;"></textarea>
-          <span *ngIf="formErrors.comments" class="text-danger">
-            {{ formErrors.comments }}
-          </span>
+        <div class="form-group">
+          <label for="isHandicap" class="col-sm-3 control-label">Handicap Accessible?</label>
+          <div class="col-sm-6">
+            <label class="radioButton">Yes
+              <input [ngModel]="ratingInfo?.isHandicap" ngModel #isHandicap="ngModel" chekced="checked" type="radio" value="true" class="form-control"
+                id="handicap" name="isHandicap" required>
+              <span class="checkmark"></span>
+            </label>
+            <label class="radioButton">No
+              <input [ngModel]="ratingInfo?.isHandicap" ngModel #isHandicap="ngModel" chekced="checked" type="radio" value="false" class="form-control"
+                id="nothandicap" name="isHandicap" required>
+              <span class="checkmark"></span>
+            </label>
+            <span *ngIf="formErrors.isHandicap" class="text-danger">{{ formErrors.isHandicap }}</span>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="itemImageUpload">Upload your picture</label>
-        <input type="file" id="itemImageUpload" name="itemImage" (change)="imageUpload($event)">
-        <p class="help-block">Upload an image of your experience.</p>
-      </div>
+        <hr>
 
 
 
 
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button [disabled]="!ratedForm.form.valid || buttonText == 'Loading...'" type="submit" class="btn btn-primary">{{ buttonText }}</button>
+        <div class="form-group">
+          <label for="isFamily" class="col-sm-3 control-label">Was there a Family Restroom?</label>
+          <div class="col-sm-6">
+            <label class="radioButton">Yes
+              <input [ngModel]="ratingInfo?.isFamily" ngModel #isFamily="ngModel" chekced="checked" type="radio" value="true" class="form-control"
+                id="family" name="isFamily" required>
+              <span class="checkmark"></span>
+            </label>
+            <label class="radioButton">No
+              <input [ngModel]="ratingInfo?.isFamily" ngModel #isFamily="ngModel" chekced="checked" type="radio" value="false" class="form-control"
+                id="notfamily" name="isFamily" required>
+              <span class="checkmark"></span>
+            </label>
+            <span *ngIf="formErrors.isFamily" class="text-danger">
+              {{ formErrors.isFamily }}
+            </span>
+          </div>
         </div>
-      </div>
 
 
 
-  </form>
+        <div class="form-group">
+          <label for="comments" class="col-sm-2 control-label"></label>
+          <div class="col-sm-9">
+            <span class="input-group-addon">Comments</span>
+            <textarea [ngModel]="ratingInfo?.comments" ngModel #comments="ngModel" type="text" class="form-control" id="comments" name="comments"
+              rows="1" style="width:100%; height:200px;"></textarea>
+            <span *ngIf="formErrors.comments" class="text-danger">
+              {{ formErrors.comments }}
+            </span>
+          </div>
+        </div>
 
-  <br><br>
 
+        <br>
+
+        <div *ngIf="currentUpload">
+          <div class="col-sm-offset-2">
+            <progress min=1 max=100 value="{{ currentUpload?.progress }}"></progress>
+            Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+          </div> 
+          </div>
+
+        <br>
+
+        <div class="form-group">
+          <label for="itemImageUpload" class="col-sm-3 control-label">Upload a picture of your experience</label>
+          <div class="col-sm-6">
+            <input type="file" id="itemImageUpload" (change)="detectFiles($event)">
+          </div>
+        </div>
+
+        <div class="form-group">
+        <input [ngModel]="currentUpload?.url" ngModel #itemImageUrl="ngModel" type="hidden" name="itemImageUrl" value="currentUpload.url">
+        </div>
+
+        <br>
+
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button [disabled]="!ratedForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+
+    </form>
+
+    <br>
+    <br>
+    </div>
 </section>

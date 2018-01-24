@@ -110,9 +110,9 @@
   </div>
 
   <div *ngFor="let ratingInfo of place.ratingInfo">
-    <span *ngIf="ratingInfo.itemImage">
-      <a href={{ratingInfo.itemImage}} target="_new">
-        <img [src]="ratingInfo.itemImage" />
+    <span *ngIf="ratingInfo.itemImageUrl">
+      <a href={{ratingInfo.itemImageUrl}} target="_new">
+        <img [src]="ratingInfo.itemImageUrl" />
       </a>
     </span>
   </div>

@@ -14,7 +14,6 @@ import { MapComponent } from './map/map.component';
 import { RateFormComponent } from './rate-form/rate-form.component';
 import { PlaceComponent } from './place/place.component';
 import { NavigationComponent } from './navigation/navigation.component';
-//import { environment } from '../environments/environment';
 import { FilterPipe }from './filter.pipe';
 import { SortPipe } from './sort.pipe'
 import { SingleplaceComponent } from './singleplace/singleplace.component';
@@ -26,6 +25,14 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { UserViewComponent } from './user-view/user-view.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { FooterComponent } from './footer/footer.component';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+// import { AngularFireAuthModule } from 'angularfire2/auth';
+import { UploadService } from './uploads/upload.service';
+import { Upload } from './uploads/upload';
+import { environment } from '../environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -45,6 +52,9 @@ import { FooterComponent } from './footer/footer.component';
     FeedbackComponent,
     FooterComponent ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule, // for database
+ // AngularFireAuthModule,
     BrowserModule,
     RatingModule.forRoot(),
     AppRoutingModule,
@@ -60,7 +70,7 @@ import { FooterComponent } from './footer/footer.component';
       libraries: ["places"]
       }),
     ],
-  providers: [DataService],
+  providers: [DataService, UploadService],
 
   bootstrap: [ AppComponent ]
 })
