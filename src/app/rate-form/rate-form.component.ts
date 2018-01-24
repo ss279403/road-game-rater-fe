@@ -4,9 +4,11 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { fadeInAnimation } from '../animations/fade-in.animation';
-import * as AWS from 'aws-sdk';
+//import * as AWS from 'aws-sdk';
 import { Router } from '@angular/router';
-import { DataService } from '../data.service'
+import { DataService } from '../data.service';
+import { UploadService } from '../uploads/upload.service';
+import { Upload } from '../uploads/upload';
 
 @Component({
   selector: 'app-rate-form',
@@ -16,6 +18,8 @@ import { DataService } from '../data.service'
 })
 export class RateFormComponent implements OnInit {
 
+  selectedFiles: FileList;
+  currentUpload: Upload;
 
   ratedForm: NgForm;
   @ViewChild('ratedForm')
@@ -35,9 +39,8 @@ export class RateFormComponent implements OnInit {
 
   placeId;
 
+ 
   imageUrl: string;
-
-  buttonText = "Submit"
 
   user: any[];
 
@@ -46,7 +49,8 @@ export class RateFormComponent implements OnInit {
     private dataService: DataService,
     private route: ActivatedRoute,
     private location: Location,
-    private router: Router
+    private router: Router,
+    private upSvc: UploadService
   ) { }
 
 
@@ -60,6 +64,7 @@ export class RateFormComponent implements OnInit {
         this.placeId = params.id;
       });
   }
+
 
   getPlaces() {
     this.dataService.getRecords("places")
@@ -107,19 +112,15 @@ export class RateFormComponent implements OnInit {
 
   saveRating(ratedForm: NgForm) {
      let ratedPlace = ratedForm.value;
-   //  ratedPlace["itemImage"] = this.imageUrl;
-      this.dataService.addRecord("places/" + this.placeId + "/ratinginfo", ratedForm.value)
+     this.dataService.addRecord("places/" + this.placeId + "/ratinginfo", ratedForm.value)
       .subscribe(
       ratedForm => {
         this.successMessage = "Record added successfully"
         window.location.replace('/place/' + this.placeId);
       },
       error => this.errorMessage = <any>error);
-  //    console.log("rated place", this.ratedPlace)
-
-  //   this.router.navigate(['/place', this.placeId]);     
+  
   }
-
 
 
   ngAfterViewChecked() {
@@ -134,27 +135,22 @@ export class RateFormComponent implements OnInit {
       );
   }
 
-  imageUpload(image: any) {
-    this.buttonText = "Loading...";
-    console.log(AWS);
-    let imageUpload = image.target.files[0];
-    console.log(imageUpload.name);
-    console.log(image);
 
-    
-    let bucket = new AWS.S3({ params: { Bucket: 'raterphotos' } });
-    let params = { Bucket: 'raterphotos', Key: imageUpload.name, Body: imageUpload, ACL: "public-read" };
-    bucket.upload(params, (error, res) => {
-      this.imageUrl = res["Location"];
-      console.log("error: ", error);
-      console.log("response: ", res["Location"]);
-      this.buttonText = "Submit";
-    })
+detectFiles(event) {
+  this.selectedFiles = event.target.files;
+  this.uploadSingle();
 }
 
-clicked() {
-  return ('../../assets/images/goldensmall.png')
+
+uploadSingle() {
+  let file = this.selectedFiles.item(0)
+  this.currentUpload = new Upload(file);
+  this.upSvc.pushUpload(this.currentUpload)  
 }
+
+
+
+
 
   onValueChanged() {
     let form = this.ratedForm.form;
