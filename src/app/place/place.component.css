@@ -6,6 +6,12 @@
     height: 80px;
  }
 
+ .page {
+    background-color: white;
+    height: 100%;
+    overflow:auto;
+}
+
 .star-ratings-sprite {
     background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
     font-size: 0;
@@ -32,3 +38,11 @@
   em { font-style: italic; }
   h1 { font-size: 24px; margin-bottom: 25px; font-weight: bold; text-transform: uppercase; }
   h2 { font-size: 16px; margin-bottom: 15px;} 
+
+  h2 {
+    margin: 0;
+      display: inline-block;
+  }
+  .serach {
+    float: right;
+  }

@@ -3,3 +3,6 @@
     color: rgb(39, 39, 39);
     border-radius: 30px 30px 30px 30px;
   }
+
+ 
+  form { font-size: 20px; margin-bottom: 12px; font-weight: bold; text-transform: uppercase; font-style: italic; color: #5186d4; }

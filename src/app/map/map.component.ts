@@ -170,7 +170,7 @@ export class MapComponent implements OnInit {
 
 
     for (let ratedPlace of this.places) {
-      console.log(ratedPlace.googleId + "eric" + place.place_id + "eric" + ratedPlace.averageRate)
+     // console.log(ratedPlace.googleId + "eric" + place.place_id + "eric" + ratedPlace.averageRate)
       if (ratedPlace.googleId == place.place_id && ratedPlace.averageRate > 3) {
         return ('../../assets/images/goldensmall.png');
       } else if (ratedPlace.googleId == place.place_id && ratedPlace.averageRate <= 3) {

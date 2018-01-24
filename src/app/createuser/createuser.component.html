@@ -2,7 +2,7 @@
 <section @fadeInAnimation>
     <br>
     <br>
-  
+  <div class="page">
     <ol class="breadcrumb">
         <li><a routerLink="/map">Map</a></li>
         <li class="active">Create Account</li>
@@ -10,11 +10,12 @@
 
 <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
 
+<div class="col-md-6 col-md-offset-3">
 <form novalidate (ngSubmit)="saveUser(signUpForm)" #signUpForm="ngForm" class="form-horizontal">
 
     <div class="form-group">
-        <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
-        <div class="col-sm-6">
+        <label for="firstName" class="col-sm-7 col-form-label">First Name</label>
+        <div class="col-sm-5">
         <input [ngModel]="user?.firstName" ngModel #firstName="ngModel" type="text" class="form-control" id="firstName" name="firstName" required>
         </div>
         <span *ngIf="formErrors.firstName" class="text-danger"> {{ formErrors.firstName }} </span>
@@ -23,8 +24,8 @@
     <br>
 
     <div class="form-group">
-        <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
-        <div class="col-sm-6">
+        <label for="lastName" class="col-sm-7 col-form-label">Last Name</label>
+        <div class="col-sm-5">
         <input [ngModel]="user?.lastName" ngModel #lastName="ngModel" type="text" class="form-control" id="lastName" name="lastName" required>
         </div>
         <span *ngIf="formErrors.lastName" class="text-danger"> {{ formErrors.lastName }} </span>
@@ -33,8 +34,8 @@
     <br>
 
     <div class="form-group">
-        <label for="username" class="col-sm-2 col-form-label">User Name</label>
-        <div class="col-sm-6">
+        <label for="username" class="col-sm-7 col-form-label">User Name</label>
+        <div class="col-sm-5">
         <input [ngModel]="user?.username" ngModel #username="ngModel" type="text" class="form-control" id="userName" name="username" required>
         </div>
         <span *ngIf="formErrors.username" class="text-danger"> {{ formErrors.username }} </span>
@@ -43,8 +44,8 @@
     <br>
 
     <div class="form-group">
-        <label for="password" class="col-sm-2 col-form-label">Password</label>
-        <div class="col-sm-6">
+        <label for="password" class="col-sm-7 col-form-label">Password</label>
+        <div class="col-sm-5">
         <input [ngModel]="user?.password" ngModel #password="ngModel" type="password" class="form-control" id="pword" name="password" required>
         </div>
         <span *ngIf="formErrors.password" class="text-danger"> {{ formErrors.password }} </span>
@@ -53,8 +54,8 @@
     <br>
 
     <div class="form-group">
-        <label for="confirmPassword" class="col-sm-2 col-form-label">Confirm Password</label>
-        <div class="col-sm-6">
+        <label for="confirmPassword" class="col-sm-7 col-form-label">Confirm Password</label>
+        <div class="col-sm-5">
         <input [ngModel]="user?.confirmPassword" ngModel #confirmPassword="ngModel" type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
         </div>
     </div>
@@ -62,11 +63,15 @@
     <br>
 
     <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
+      <div class="col-sm-offset-5 col-sm-9">
         <button [disabled]="!signUpForm.form.valid" type="submit" class="btn btn-primary">Join the Party</button>
       </div>
     </div>
 </form>
+</div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 
 </section>
 

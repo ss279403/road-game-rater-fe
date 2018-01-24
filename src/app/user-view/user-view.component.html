@@ -1,7 +1,7 @@
 <section @fadeInAnimation>
   <br>
   <br>
-  <br>
+  <div class="page">
 
   <div *ngIf="userData">
       <ol class="breadcrumb">
@@ -21,7 +21,7 @@
     <br>
 
     <div style="top:50%;text-align:center;">
-      <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
+      <table class="table table-striped table-bordered" id="dataTable" style="table-layout: fixed; width: 100%">
 
         <thead>
 
@@ -52,15 +52,15 @@
                 <img class="pic" alt="poo" src="assets/images/poo.png">
               </div>
             </td>
-            <td>{{userView.comments}}</td>
+            <td style="word-wrap: break-word">{{userView.comments}}</td>
           </tr>
         </tbody>
       </table>
     </div>
 
+</div>
 
-
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 <!--<div *ngFor="let userView of user.place">

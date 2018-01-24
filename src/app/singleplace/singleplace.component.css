@@ -52,3 +52,9 @@
     letter-spacing: .1em;
   }
 
+  .page {
+    background-color: white;
+    height: 100%;
+    overflow:auto;
+}
+

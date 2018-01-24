@@ -34,3 +34,9 @@
           background-color: #e7e5e4;
           letter-spacing: .1em;
         }
+
+        .page {
+            background-color: white;
+            height: 100%;
+            overflow:auto;
+        }
