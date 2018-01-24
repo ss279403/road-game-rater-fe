@@ -40,3 +40,7 @@
             height: 100%;
             overflow:auto;
         }
+
+        #dataTable{
+            margin-bottom: 0px;
+        }

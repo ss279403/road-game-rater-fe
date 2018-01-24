@@ -1,0 +1,5 @@
+.form-group {
+    margin-top: -15px;
+}
+
+.input-group-addon { font-size: 20px; margin-bottom: 20px; font-weight: bold; text-transform: uppercase; font-style: italic; color: #5186d4; }

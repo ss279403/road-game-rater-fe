@@ -2,28 +2,5 @@ agm-map {
     height: 400px;
   }
 
-  .stripe {
-    color: black;
-    background: repeating-linear-gradient(45deg, transparent, transparent 10px, #ccc 10px, #ccc 20px), linear-gradient(to bottom, #eee, #999);
-    height: 100%;
-    background-repeat: repeat-y;
-  }
 
-  /* .container {
-    background-color: white;
-    height: 100%;
-    overflow:auto;
-} */
 
-html, body {
-  color: black;
-    background: repeating-linear-gradient(45deg, transparent, transparent 10px, #ccc 10px, #ccc 20px), linear-gradient(to bottom, #eee, #999);
-  position: fixed;
-  top: 0; 
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}

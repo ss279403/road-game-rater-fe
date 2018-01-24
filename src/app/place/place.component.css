@@ -40,9 +40,13 @@
   h2 { font-size: 16px; margin-bottom: 15px;} 
 
   h2 {
-    margin: 0;
-      display: inline-block;
+   font-size: 20px; margin-bottom: -10px; font-weight: bold; text-transform: uppercase; font-style: italic; color: #5186d4;
   }
+
   .serach {
-    float: right;
+   float: left;
   }
+
+  #dataTable{
+    margin-bottom: 0px;
+}

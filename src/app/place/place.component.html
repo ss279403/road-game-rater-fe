@@ -1,18 +1,19 @@
 <section @fadeInAnimation>
-<div class="page">
 <br>
+
 
 <ol class="breadcrumb">
     <li><a routerLink="/map">Map</a></li>
     <li class="active">Top Rated Locations</li>
 </ol>
 
-<h2>Search By Name or Address</h2> 
-<input class="search" [(ngModel)]="searchText" placeholder="Place or Address">
+<h2>Search By Name or Address</h2>
+<br>
+<input style="width:28%" class="search" [(ngModel)]="searchText" placeholder="Place or Address">
 <br>
 <br>
 
-
+<div class="page">
     
 <div *ngIf="places">
   <div *ngFor="let ratedPlace of places | sort : 'averageRate'">
@@ -32,8 +33,8 @@
       <th>Handicap Equipped</th>
       <th>Family Bathroom</th>
       <th>Address</th>
-      <th *ngIf=user>Rate This Place</th>
       <th>See Reviews</th>
+      <th *ngIf=user>Rate This Place</th>
     </tr>
 
 
@@ -75,16 +76,16 @@
       <td>
         {{place.address}}
       </td>
+      <td>
+          <a class="btn btn-primary" [routerLink]="['/place/', place.id]">See Reviews</a>&nbsp;
+        </td>
       <td *ngIf=user class="text-center">
           <button (click)="addPlace(placesForm)" class="btn btn-danger">Rate</button>
         </td>
-      <td>
-        <a class="btn btn-primary" [routerLink]="['/place/', place.id]">See Reviews</a>&nbsp;
-      </td>
     </tr>
   </tbody>
 </table>
 </div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 </section>
 

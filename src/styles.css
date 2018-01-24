@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body {
+    color: black;
+    background: repeating-linear-gradient(45deg, transparent, transparent 10px, #ccc 10px, #ccc 20px), linear-gradient(to bottom, #eee, #999);
+    height: 100%;
+    /* background-repeat: repeat-y; */
+  }
+

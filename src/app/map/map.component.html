@@ -1,6 +1,6 @@
 <section @fadeInAnimation>
 <br>
-<div class="page">
+
 <div class="directions">
   <h1>Welcome to RoadGame Rater</h1>
   <h4>An app to help you find the best places to do your business. Enter an address and find bathrooms nearby to see their reviews.</h4>
@@ -8,6 +8,7 @@
 </div>
 <br>
 <br>
+
 <h1>Enter Your Location</h1>
 <div class="form-group">
   <input #search [formControl]="searchControl" placeholder="search for location" type="text" class="form-control">
@@ -54,6 +55,7 @@
 <br>
 <br>
 
+<div class="page">
 <div *ngIf="nearByPlaces">
 
   <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
