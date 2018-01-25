@@ -4,12 +4,16 @@
 
 
   <div *ngIf="userData">
-      <ol class="breadcrumb">
-          <li><a routerLink="/map">Map</a></li>
-          <li><a routerLink="/place">Top Rated Locations</a></li>
-          <li class="active">{{userData.username}}'s Reviews</li>
-      </ol>
-    </div>
+    <ol class="breadcrumb">
+      <li>
+        <a routerLink="/map">Map</a>
+      </li>
+      <li>
+        <a routerLink="/place">Top Rated Locations</a>
+      </li>
+      <li class="active">{{userData.username}}'s Reviews</li>
+    </ol>
+  </div>
 
 
   <div *ngIf="userData">
@@ -17,9 +21,10 @@
       {{userData.firstName}} {{userData.lastName}}
     </div>
   </div>
-    <br>
+  <br>
 
-    <div class="page">
+
+  <div class="page">
     <div style="top:50%;text-align:center;">
       <table class="table table-striped table-bordered" id="dataTable" style="table-layout: fixed; width: 100%">
 
@@ -53,22 +58,10 @@
               </div>
             </td>
             <td style="word-wrap: break-word">{{userView.comments}}</td>
-            </tr>
+          </tr>
         </tbody>
       </table>
     </div>
-</div>
-
-
-
-
-
-<!--<div *ngFor="let userView of user.place">
-
-  {{userView.ratingInfo}}
-  {{userView.name}}
-  {{name}}
-
-</div> -->
+  </div>
 
 </section>

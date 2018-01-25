@@ -50,7 +50,9 @@
 
 </agm-map>
 
-
+<div *ngFor="let pics of nearByPlaces.photos">
+    {{pics[0].html_attributions[0]}}
+  </div>
 
 <br>
 <br>
@@ -118,4 +120,5 @@
   </table>
 </div>
 </div>
+
 

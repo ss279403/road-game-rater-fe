@@ -29,9 +29,6 @@ export class MapComponent implements OnInit {
 
   places: any[];
 
-  goodRatings: any[];
-  badRatings: any[];
-
   //  ratedPlaces: any;
 
   @ViewChild('placesForm')

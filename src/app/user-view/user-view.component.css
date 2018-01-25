@@ -39,8 +39,11 @@
             background-color: white;
             height: 100%;
             overflow:auto;
-        }
+         }
 
         #dataTable{
-            margin-bottom: 0px;
+            margin-bottom: 0px;          
+         
         }
+
+      
